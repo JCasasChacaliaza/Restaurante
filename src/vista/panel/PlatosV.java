@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.panel;
 
 /**
  *
@@ -33,7 +33,15 @@ public class PlatosV extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jrbNoDispoPlat = new javax.swing.JRadioButton();
+        jrdDisponPlat = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtPrecPlat = new javax.swing.JTextField();
+        txtCodPlat1 = new javax.swing.JTextField();
+        txtDescPlat1 = new javax.swing.JTextField();
+        txtDescPlat2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,26 +58,41 @@ public class PlatosV extends javax.swing.JFrame {
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 90));
 
-        jLabel3.setFont(new java.awt.Font("Doppio One", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Código");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 90, 40));
+        jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
+        jLabel3.setText("Precio");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 80, 40));
 
-        jPanel3.setBackground(new java.awt.Color(204, 0, 255));
+        jPanel3.setBackground(new java.awt.Color(153, 153, 255));
         jPanel3.setForeground(new java.awt.Color(204, 102, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Doppio One", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Capacidad");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 30));
+        jLabel2.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
+        jLabel2.setText("Estado");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 140, 30));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 290, 70));
+        jrbNoDispoPlat.setText("No Disponible");
+        jPanel3.add(jrbNoDispoPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Doppio One", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Capacidad");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 140, 40));
+        jrdDisponPlat.setText("Disponible");
+        jPanel3.add(jrdDisponPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 290, 70));
+
+        jLabel5.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
+        jLabel5.setText("Código");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 90, 40));
+
+        jLabel6.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
+        jLabel6.setText("Tipo");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 150, 40));
+
+        jLabel7.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
+        jLabel7.setText("Descripcion");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 150, 40));
+        jPanel2.add(txtPrecPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 310, -1));
+        jPanel2.add(txtCodPlat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 290, -1));
+        jPanel2.add(txtDescPlat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 250, -1));
+        jPanel2.add(txtDescPlat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 320, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,9 +147,17 @@ public class PlatosV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jrbNoDispoPlat;
+    private javax.swing.JRadioButton jrdDisponPlat;
+    private javax.swing.JTextField txtCodPlat1;
+    private javax.swing.JTextField txtDescPlat1;
+    private javax.swing.JTextField txtDescPlat2;
+    private javax.swing.JTextField txtPrecPlat;
     // End of variables declaration//GEN-END:variables
 }

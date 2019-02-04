@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.panel;
 
 /**
  *
@@ -63,21 +63,18 @@ public class MesaV extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 70));
 
         jLabel2.setFont(new java.awt.Font("Bungee Inline", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Numero");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 90, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 86, 80, -1));
 
         jLabel3.setFont(new java.awt.Font("Bungee Inline", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Capacidad");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 120, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 120, 20));
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Bungee Inline", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("estado");
+        jLabel4.setText("Estado");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 90, 30));
 
         jRadioButton1.setText("Ocupado");
@@ -91,9 +88,8 @@ public class MesaV extends javax.swing.JFrame {
         jPanel1.add(txtCodMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 80, -1));
 
         jLabel5.setFont(new java.awt.Font("Bungee Inline", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("COD");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 90, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 90, 20));
         jPanel1.add(txtCodMesa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 80, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sobre(1).png"))); // NOI18N

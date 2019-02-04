@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.panel;
 
 /**
  *
@@ -35,16 +35,23 @@ public class ClienteV extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txxCodigo = new javax.swing.JTextField();
-        txtTip = new javax.swing.JTextField();
+        txtDoc = new javax.swing.JTextField();
         boxDoc = new javax.swing.JComboBox<>();
         txtDNI2 = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtApellido1 = new javax.swing.JTextField();
+        txtUsuarCli = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         btnPedido = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnEliminar1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtApellido2 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        txtDirecc1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtUsuarCli1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,63 +60,93 @@ public class ClienteV extends javax.swing.JFrame {
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reanudar.png"))); // NOI18N
         btnModificar.setText("Modificar");
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 120, -1));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 120, -1));
 
-        jLabel1.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel1.setText("Nombre");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 36));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 36));
 
-        jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Apellido");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 102, 36));
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
+        jLabel2.setText("Password");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 70, 20));
 
-        jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel3.setText("DNI");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 87, 36));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 87, 36));
 
-        jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel4.setText("Código");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 87, 36));
-        jPanel1.add(txxCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 120, 30));
-        jPanel1.add(txtTip, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 380, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 50, 30));
+        jPanel1.add(txxCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 120, -1));
+
+        txtDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDocActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 160, 30));
 
         boxDoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "RUC" }));
-        jPanel1.add(boxDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 90, -1));
-        jPanel1.add(txtDNI2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 120, 30));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 290, 30));
-        jPanel1.add(txtApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 290, 30));
+        boxDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxDocActionPerformed(evt);
+            }
+        });
+        jPanel1.add(boxDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 90, 30));
+        jPanel1.add(txtDNI2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 120, 20));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 190, 30));
+        jPanel1.add(txtUsuarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 180, 30));
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 116, -1));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 116, -1));
 
         btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cubiertos.png"))); // NOI18N
         btnPedido.setText("Pedido");
-        jPanel1.add(btnPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 116, -1));
+        jPanel1.add(btnPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 116, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sobre.png"))); // NOI18N
         btnGuardar.setText("Guardar");
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 116, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 116, -1));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Clarendon Cn BT", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 204));
         jLabel5.setText("Formulario del Cliente");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 210, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 250, 40));
 
         btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante.png"))); // NOI18N
         btnEliminar1.setText("Eliminar");
-        jPanel1.add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 116, -1));
+        jPanel1.add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 116, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
+        jLabel6.setText("Apellido");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 102, 20));
+        jPanel1.add(txtApellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 180, 30));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipos de Usuarios", "Cliente", "Administrador", "Mozo", "Cajero" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 150, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
+        jLabel7.setText("Direccion");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 102, 20));
+        jPanel1.add(txtDirecc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 180, 30));
+
+        jLabel8.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
+        jLabel8.setText("Usuario");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 60, 20));
+        jPanel1.add(txtUsuarCli1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 180, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,6 +157,18 @@ public class ClienteV extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boxDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxDocActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void txtDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,16 +212,23 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnPedido;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtApellido1;
+    private javax.swing.JTextField txtApellido2;
     private javax.swing.JTextField txtDNI2;
+    private javax.swing.JTextField txtDirecc1;
+    private javax.swing.JTextField txtDoc;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTip;
+    private javax.swing.JTextField txtUsuarCli;
+    private javax.swing.JTextField txtUsuarCli1;
     private javax.swing.JTextField txxCodigo;
     // End of variables declaration//GEN-END:variables
 }
