@@ -42,6 +42,12 @@ public class PlatosV extends javax.swing.JFrame {
         txtCodPlat1 = new javax.swing.JTextField();
         txtDescPlat1 = new javax.swing.JTextField();
         txtDescPlat2 = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        btnEliminarPla = new javax.swing.JButton();
+        btnModificarPla = new javax.swing.JButton();
+        btnGuardarPla = new javax.swing.JButton();
+        btnNuevoPla = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,12 +57,12 @@ public class PlatosV extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 0, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Cooper Black", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel1.setFont(new java.awt.Font("GREETHING", 0, 57)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Platos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 160, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 160, 60));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 90));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 80));
 
         jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
         jLabel3.setText("Precio");
@@ -89,20 +95,69 @@ public class PlatosV extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
         jLabel7.setText("Descripcion");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 150, 40));
-        jPanel2.add(txtPrecPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 310, -1));
-        jPanel2.add(txtCodPlat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 290, -1));
+        jPanel2.add(txtPrecPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 250, -1));
+        jPanel2.add(txtCodPlat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 250, -1));
         jPanel2.add(txtDescPlat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 250, -1));
-        jPanel2.add(txtDescPlat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 320, -1));
+        jPanel2.add(txtDescPlat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 250, -1));
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 255), new java.awt.Color(255, 102, 51), null, null));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 440, 270));
+
+        jPanel5.setBackground(new java.awt.Color(153, 153, 0));
+
+        btnEliminarPla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante.png"))); // NOI18N
+        btnEliminarPla.setText("Eliminar");
+
+        btnModificarPla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reanudar.png"))); // NOI18N
+        btnModificarPla.setText("Modificar");
+
+        btnGuardarPla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sobre.png"))); // NOI18N
+        btnGuardarPla.setText("Guardar");
+        btnGuardarPla.setPreferredSize(new java.awt.Dimension(64, 64));
+
+        btnNuevoPla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        btnNuevoPla.setText("Nuevo");
+        btnNuevoPla.setPreferredSize(new java.awt.Dimension(64, 64));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnNuevoPla, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardarPla, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificarPla, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarPla, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNuevoPla, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(btnGuardarPla, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(btnModificarPla)
+                .addGap(2, 2, 2)
+                .addComponent(btnEliminarPla)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 140, 250));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -144,6 +199,10 @@ public class PlatosV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarPla;
+    private javax.swing.JButton btnGuardarPla;
+    private javax.swing.JButton btnModificarPla;
+    private javax.swing.JButton btnNuevoPla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -153,6 +212,8 @@ public class PlatosV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jrbNoDispoPlat;
     private javax.swing.JRadioButton jrdDisponPlat;
     private javax.swing.JTextField txtCodPlat1;

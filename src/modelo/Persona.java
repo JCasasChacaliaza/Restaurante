@@ -9,7 +9,7 @@ package modelo;
  *
  * @author Usuario
  */
-public class Personal {
+public class Persona {
     private int codPer;
     private String nomPer;
     private String apePer;
