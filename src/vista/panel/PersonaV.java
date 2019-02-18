@@ -67,7 +67,7 @@ public class PersonaV extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Password");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 70, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 70, 20));
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -90,7 +90,13 @@ public class PersonaV extends javax.swing.JFrame {
         });
         jPanel1.add(boxDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 90, 30));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 180, 30));
-        jPanel1.add(txtUsuarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 180, 30));
+
+        txtUsuarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarCliActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtUsuarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 180, 30));
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -115,8 +121,8 @@ public class PersonaV extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Usuario");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 60, 20));
-        jPanel1.add(txtUsuarCli1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 180, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 60, 20));
+        jPanel1.add(txtUsuarCli1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 180, 30));
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -159,7 +165,7 @@ public class PersonaV extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,12 +187,12 @@ public class PersonaV extends javax.swing.JFrame {
                 .addComponent(btnEliminar1)
                 .addGap(2, 2, 2)
                 .addComponent(btnPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnGuardar.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 160, 280));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 140, 270));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,6 +225,10 @@ public class PersonaV extends javax.swing.JFrame {
     private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPedidoActionPerformed
+
+    private void txtUsuarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,13 +267,13 @@ public class PersonaV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> boxDoc;
-    private javax.swing.JButton btnEliminar1;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnNuevo;
-    private javax.swing.JButton btnPedido;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> boxDoc;
+    public static javax.swing.JButton btnEliminar1;
+    public static javax.swing.JButton btnGuardar;
+    public static javax.swing.JButton btnModificar;
+    public static javax.swing.JButton btnNuevo;
+    public static javax.swing.JButton btnPedido;
+    public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -274,12 +284,12 @@ public class PersonaV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtApellido2;
-    private javax.swing.JTextField txtDirecc1;
-    private javax.swing.JTextField txtDoc;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtUsuarCli;
-    private javax.swing.JTextField txtUsuarCli1;
-    private javax.swing.JTextField txxCodigo;
+    public static javax.swing.JTextField txtApellido2;
+    public static javax.swing.JTextField txtDirecc1;
+    public static javax.swing.JTextField txtDoc;
+    public static javax.swing.JTextField txtNombre;
+    public static javax.swing.JTextField txtUsuarCli;
+    public static javax.swing.JTextField txtUsuarCli1;
+    public static javax.swing.JTextField txxCodigo;
     // End of variables declaration//GEN-END:variables
 }
