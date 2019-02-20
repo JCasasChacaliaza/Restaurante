@@ -1,6 +1,11 @@
 package vista.panel;
 
+import java.awt.BorderLayout;
+import vista.control.Bienvenida;
+import static vista.control.Principal.jpPrincipal;
+
 public class UbigeoView extends javax.swing.JPanel {
+
     public UbigeoView() {
         initComponents();
     }
@@ -84,7 +89,7 @@ public class UbigeoView extends javax.swing.JPanel {
         btnNuevoHor.setPreferredSize(new java.awt.Dimension(64, 64));
         jPanel1.add(btnNuevoHor, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 120, 48));
 
-        btnPrincipalUbi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante.png"))); // NOI18N
+        btnPrincipalUbi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon.png"))); // NOI18N
         btnPrincipalUbi.setText("Principal");
         btnPrincipalUbi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +129,15 @@ public class UbigeoView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrincipalUbiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalUbiActionPerformed
-        // TODO add your handling code here:
+
+        Bienvenida bienvenida = new Bienvenida();
+        bienvenida.setSize(700, 600);
+        bienvenida.setLocation(0, 0);
+
+        jpPrincipal.removeAll();
+        jpPrincipal.add(bienvenida, BorderLayout.CENTER);
+        jpPrincipal.revalidate();
+        jpPrincipal.repaint();
     }//GEN-LAST:event_btnPrincipalUbiActionPerformed
 
     private void btnEliminarHor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHor1ActionPerformed

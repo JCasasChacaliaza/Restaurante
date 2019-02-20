@@ -36,14 +36,14 @@ public class PersonaV extends javax.swing.JFrame {
         txtDoc = new javax.swing.JTextField();
         boxDoc = new javax.swing.JComboBox<>();
         txtNombre = new javax.swing.JTextField();
-        txtUsuarCli = new javax.swing.JTextField();
+        txtPassCli = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtApellido2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtApellido = new javax.swing.JTextField();
+        jboxTipUsuario = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         txtDirecc1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtUsuarCli1 = new javax.swing.JTextField();
+        txtUsuarCli = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -52,6 +52,9 @@ public class PersonaV extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar1 = new javax.swing.JButton();
         btnPedido = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,7 +83,7 @@ public class PersonaV extends javax.swing.JFrame {
                 txtDocActionPerformed(evt);
             }
         });
-        jPanel1.add(txtDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 160, 30));
+        jPanel1.add(txtDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 160, 30));
 
         boxDoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "RUC" }));
         boxDoc.addActionListener(new java.awt.event.ActionListener() {
@@ -88,29 +91,35 @@ public class PersonaV extends javax.swing.JFrame {
                 boxDocActionPerformed(evt);
             }
         });
-        jPanel1.add(boxDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 90, 30));
+        jPanel1.add(boxDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 90, 30));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 180, 30));
 
-        txtUsuarCli.addActionListener(new java.awt.event.ActionListener() {
+        txtPassCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarCliActionPerformed(evt);
+                txtPassCliActionPerformed(evt);
             }
         });
-        jPanel1.add(txtUsuarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 180, 30));
+        jPanel1.add(txtPassCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 180, 30));
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Apellido");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 102, 20));
-        jPanel1.add(txtApellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 180, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipos de Usuarios", "Cliente", "Administrador", "Mozo", "Cajero" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                txtApellidoActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 150, -1));
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 180, 30));
+
+        jboxTipUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipos de Usuarios", "Cliente", "Administrador", "Mozo", "Cajero" }));
+        jboxTipUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jboxTipUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jboxTipUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -122,7 +131,7 @@ public class PersonaV extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Usuario");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 60, 20));
-        jPanel1.add(txtUsuarCli1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 180, 30));
+        jPanel1.add(txtUsuarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 180, 30));
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -165,7 +174,7 @@ public class PersonaV extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +201,39 @@ public class PersonaV extends javax.swing.JFrame {
 
         btnGuardar.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 140, 270));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 130, 270));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 550, 260));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -214,9 +255,9 @@ public class PersonaV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxDocActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jboxTipUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jboxTipUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jboxTipUsuarioActionPerformed
 
     private void txtDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocActionPerformed
         // TODO add your handling code here:
@@ -226,9 +267,13 @@ public class PersonaV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPedidoActionPerformed
 
-    private void txtUsuarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarCliActionPerformed
+    private void txtPassCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassCliActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarCliActionPerformed
+    }//GEN-LAST:event_txtPassCliActionPerformed
+
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,7 +318,6 @@ public class PersonaV extends javax.swing.JFrame {
     public static javax.swing.JButton btnModificar;
     public static javax.swing.JButton btnNuevo;
     public static javax.swing.JButton btnPedido;
-    public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -284,12 +328,16 @@ public class PersonaV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    public static javax.swing.JTextField txtApellido2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    public static javax.swing.JComboBox<String> jboxTipUsuario;
+    public static javax.swing.JTextField txtApellido;
     public static javax.swing.JTextField txtDirecc1;
     public static javax.swing.JTextField txtDoc;
     public static javax.swing.JTextField txtNombre;
+    public static javax.swing.JTextField txtPassCli;
     public static javax.swing.JTextField txtUsuarCli;
-    public static javax.swing.JTextField txtUsuarCli1;
     public static javax.swing.JTextField txxCodigo;
     // End of variables declaration//GEN-END:variables
 }

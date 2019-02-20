@@ -5,6 +5,8 @@
  */
 package vista.panel;
 
+import vista.mesa.VMesa;
+
 /**
  *
  * @author Usuario
@@ -30,11 +32,11 @@ public class VentaV extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnMesaUno = new javax.swing.JButton();
+        btnMesa2 = new javax.swing.JButton();
+        btnMesa3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnMesa4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,35 +53,44 @@ public class VentaV extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 80));
 
-        jButton2.setText("Mesa 1");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 120, 80));
-
-        jButton3.setText("Mesa 2");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnMesaUno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante-simbolo-circular-de-cubiertos-de-una-cuchara-y-un-tenedor-en-un-circulo.png"))); // NOI18N
+        btnMesaUno.setText("Mesa 1");
+        btnMesaUno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnMesaUnoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 120, 80));
+        jPanel1.add(btnMesaUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 120, 80));
 
-        jButton4.setText("Mesa 3");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnMesa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante-simbolo-circular-de-cubiertos-de-una-cuchara-y-un-tenedor-en-un-circulo.png"))); // NOI18N
+        btnMesa2.setText("Mesa 2");
+        btnMesa2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnMesa2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 120, 80));
+        jPanel1.add(btnMesa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 120, 80));
+
+        btnMesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante-simbolo-circular-de-cubiertos-de-una-cuchara-y-un-tenedor-en-un-circulo.png"))); // NOI18N
+        btnMesa3.setText("Mesa 3");
+        btnMesa3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMesa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 120, 80));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Mesa 4");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMesa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante-simbolo-circular-de-cubiertos-de-una-cuchara-y-un-tenedor-en-un-circulo.png"))); // NOI18N
+        btnMesa4.setText("Mesa 4");
+        btnMesa4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMesa4ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 120, 80));
+        jPanel3.add(btnMesa4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 120, 80));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 660, 360));
 
@@ -97,17 +108,23 @@ public class VentaV extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnMesa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnMesa4ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnMesa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnMesa2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnMesa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnMesa3ActionPerformed
+
+    private void btnMesaUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesaUnoActionPerformed
+        VMesa vmesa = new VMesa();
+        vmesa.setVisible(true);
+        vmesa.setDefaultCloseOperation(vmesa.HIDE_ON_CLOSE);
+    }//GEN-LAST:event_btnMesaUnoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,10 +162,10 @@ public class VentaV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnMesa2;
+    private javax.swing.JButton btnMesa3;
+    private javax.swing.JButton btnMesa4;
+    private javax.swing.JButton btnMesaUno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

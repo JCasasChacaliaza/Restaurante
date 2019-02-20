@@ -26,6 +26,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jpPrincipal = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jpBotones = new javax.swing.JPanel();
         btnVenta = new javax.swing.JButton();
         btnHorario = new javax.swing.JButton();
@@ -38,6 +39,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -45,18 +47,26 @@ public class Principal extends javax.swing.JFrame {
         jpPrincipal.setBackground(new java.awt.Color(102, 255, 102));
         jpPrincipal.setPreferredSize(new java.awt.Dimension(700, 600));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/senal-de-trafico.png"))); // NOI18N
+
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
+                .addContainerGap(112, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(76, 76, 76))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
+            .addGroup(jpPrincipalLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 690, 590));
+        jPanel1.add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 700, 600));
 
         jpBotones.setBackground(new java.awt.Color(0, 204, 255));
         jpBotones.setForeground(new java.awt.Color(102, 255, 102));
@@ -163,7 +173,7 @@ public class Principal extends javax.swing.JFrame {
         jpTituloLayout.setHorizontalGroup(
             jpTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTituloLayout.createSequentialGroup()
-                .addContainerGap(286, Short.MAX_VALUE)
+                .addContainerGap(296, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(267, 267, 267))
         );
@@ -174,7 +184,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jpTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 60));
+        jPanel1.add(jpTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -283,6 +293,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnUbigeo;
     private javax.swing.JButton btnVenta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jpBotones;
     public static javax.swing.JPanel jpPrincipal;

@@ -1,4 +1,5 @@
 package dao;
+
 import modelo.Persona;
 
 public interface PersonaD {
