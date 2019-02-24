@@ -17,27 +17,28 @@ public class PersonaC implements Serializable {
         dao = new PersonaImpl();
     }
 
-    public void registrarPersona() throws Exception {
+    public void registrarPersona(){
         try {
             dao.registrar(persona);
         } catch (Exception e) {
-            System.out.println("Error en registrarCliente" + e.getMessage());
+            System.out.println("Error en registrarPersona controlador " + e.getMessage());
         }
     }
 
-    public void eliminarPersona() throws Exception {
+
+    public void eliminarPersona()  {
         try {
             dao.eliminar(persona);
         } catch (Exception e) {
-            throw e;
+            System.out.println("Error en eliminar"+e.getMessage());
         }
     }
 
-    public void modificarPersona() throws Exception {
+    public void modificarPersona(){
         try {
             dao.modificar(persona);
         } catch (Exception e) {
-            throw e;
+            System.out.println("error al modificar"+e.getMessage());
         }
     }
 
@@ -49,7 +50,7 @@ public class PersonaC implements Serializable {
             persona.setDirPer(PersonaV.txtDirecc1.getText());
             persona.setUserPer(PersonaV.txtUsuarCli.getText());
             persona.setPassPer(PersonaV.txtPassCli.getText());
-            persona.setTipPer(PersonaV.jboxTipUsuario.getSelectedItem().toString());
+            persona.setTipPer((String) PersonaV.jboxTipUsuario.getSelectedItem());
         } catch (Exception e) {
             System.out.println("Error en variables Persona" + e.getMessage());
         }
@@ -63,7 +64,9 @@ public class PersonaC implements Serializable {
     public void limpiarModelo() {
         persona = new Persona();
     }
+   
 
+    //Codigo generado
     public Persona getPersona() {
         return persona;
     }
@@ -75,9 +78,9 @@ public class PersonaC implements Serializable {
     public List<Persona> getLstPersona() {
         return lsPersona;
     }
-
+   
     public void setLstPersona(List<Persona> lsPersona) {
         this.lsPersona = lsPersona;
     }
-
+    
 }

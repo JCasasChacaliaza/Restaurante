@@ -1,16 +1,29 @@
 
 package modelo;
 
+import java.sql.Date;
+
 
 public class Persona {
     private int codPer;
     private String nomPer;
     private String apePer;
+    private Date fecPer;
     private String dniPer;
     private String dirPer;
     private String tipPer;
     private String userPer;
     private String passPer;
+
+    public Date getFecPer() {
+        return fecPer;
+    }
+
+    public void setFecPer(Date fecPer) {
+        this.fecPer = fecPer;
+    }
+    
+ 
 
     public int getCodPer() {
         return codPer;

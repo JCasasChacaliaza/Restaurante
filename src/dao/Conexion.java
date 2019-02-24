@@ -20,6 +20,7 @@ public class Conexion {
             String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(driver).newInstance();
             cnx = DriverManager.getConnection(url, user, password);
+            System.out.println("si hay conexion");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en el: " + ex.getMessage());
         }

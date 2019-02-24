@@ -2,6 +2,7 @@ package dao.impl;
 
 import dao.Conexion;
 import dao.PersonaD;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -15,8 +16,8 @@ public class PersonaImpl extends Conexion implements PersonaD {
     @Override
     public void registrar(Persona persona) throws Exception {
         try {
-            String sql = "INSERT INTO PERSONA(NOMPER, APELLPER, DOCPER, DIRPER, TIPPER, USERPER, PASSPER) VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement ps = this.conectar().prepareStatement(sql);
+            String INSERT = "INSERT INTO persona(NOMPER, APELLPER, DOCPER, DIRPER, TIPPER, USERPER, PASSPER) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement ps = this.conectar().prepareStatement(INSERT);
             ps.setString(1, persona.getNomPer());
             ps.setString(2, persona.getApePer());
             ps.setString(3, persona.getDniPer());
@@ -77,11 +78,11 @@ public class PersonaImpl extends Conexion implements PersonaD {
                 sql = "select * from persona where apellPer like '%" + dato + "%'";
                 break;
         }
-        String datos[] = new String[4];
+        String datos[] = new String[8];
         Statement st = this.conectar().createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 8; i++) {
                 datos[i] = rs.getString(i + 1);
             }
             modelo.addRow(datos);
