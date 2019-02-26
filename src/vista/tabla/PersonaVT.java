@@ -1,5 +1,6 @@
-package vista.panel;
+package vista.tabla;
 
+import vista.panel.*;
 import control.PersonaC;
 import dao.impl.PersonaImpl;
 import java.util.logging.Level;
@@ -7,7 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class PersonaV extends javax.swing.JFrame {
+public class PersonaVT extends javax.swing.JFrame {
 
     public static DefaultTableModel modeloTabla;
     public int tipo = 1;
@@ -16,17 +17,19 @@ public class PersonaV extends javax.swing.JFrame {
     //PersonaC personaC;
     private int codigoPersona;
 
-    public PersonaV() throws Exception {
+    public PersonaVT() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         btnGroupPersona.add(jrNombreP);
         btnGroupPersona.add(jrApellP);
         cargar_Tabla();
-
+        jpCRUD.setVisible(false);
+        jpBonones.setVisible(false);
+        jpLista.setVisible(true);
     }
 
     private void cargar_Tabla() throws Exception {
-        String columna[] = new String[]{"Codigo", "Nombre", "Apellido", "Documento", "Direccion", "Tipo de Persona", "Usuario", "Contraseña"};
+        String columna[] = new String[]{"Codigo", "Nombre", "Apellido", "Documento", "Direccion"};
         modeloTabla = new DefaultTableModel(null, columna);
         dao = new PersonaImpl();
         dao.buscar(modeloTabla, tipo, dato);
@@ -39,8 +42,19 @@ public class PersonaV extends javax.swing.JFrame {
 
         btnGroupPersona = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jpLista = new javax.swing.JPanel();
+        jrNombreP = new javax.swing.JRadioButton();
+        jrApellP = new javax.swing.JRadioButton();
+        chkTodosP = new javax.swing.JCheckBox();
+        txtDatosP = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPersona = new javax.swing.JTable();
+        jpBonones = new javax.swing.JPanel();
+        btnNuevo = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnEliminar1 = new javax.swing.JButton();
+        btnPedido = new javax.swing.JButton();
+        btnModificarRegis = new javax.swing.JButton();
         jpCRUD = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,36 +69,131 @@ public class PersonaV extends javax.swing.JFrame {
         txtDirecc1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtUsuarCli = new javax.swing.JTextField();
-        jpLista = new javax.swing.JPanel();
-        jrNombreP = new javax.swing.JRadioButton();
-        jrApellP = new javax.swing.JRadioButton();
-        chkTodosP = new javax.swing.JCheckBox();
-        txtDatosP = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblPersona = new javax.swing.JTable();
-        jpBonones = new javax.swing.JPanel();
-        btnNuevo = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
-        btnEliminar1 = new javax.swing.JButton();
-        btnPedido = new javax.swing.JButton();
-        btnModificarRegis = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 204));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpLista.setBackground(new java.awt.Color(153, 153, 153));
+        jpLista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setFont(new java.awt.Font("GREETHING", 0, 57)); // NOI18N
-        jLabel5.setText("Formulario Persona");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 340, 50));
+        jrNombreP.setText("Nombre");
+        jrNombreP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrNombrePActionPerformed(evt);
+            }
+        });
+        jpLista.add(jrNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 70, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 70));
+        jrApellP.setText("Apellido");
+        jrApellP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrApellPActionPerformed(evt);
+            }
+        });
+        jpLista.add(jrApellP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 70, 30));
 
+        chkTodosP.setText("Todos");
+        chkTodosP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkTodosPActionPerformed(evt);
+            }
+        });
+        jpLista.add(chkTodosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 60, 30));
+
+        txtDatosP.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtDatosPCaretUpdate(evt);
+            }
+        });
+        txtDatosP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDatosPActionPerformed(evt);
+            }
+        });
+        jpLista.add(txtDatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 150, 30));
+
+        tblPersona.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblPersona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPersonaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblPersona);
+
+        jpLista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 710, 150));
+
+        jPanel1.add(jpLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 550));
+
+        jpBonones.setBackground(new java.awt.Color(153, 102, 0));
+        jpBonones.setForeground(new java.awt.Color(204, 102, 0));
+        jpBonones.setEnabled(false);
+        jpBonones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        btnNuevo.setText("Nuevo");
+        btnNuevo.setPreferredSize(new java.awt.Dimension(64, 64));
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 48));
+
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sobre.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.setPreferredSize(new java.awt.Dimension(64, 64));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 120, 48));
+        btnGuardar.getAccessibleContext().setAccessibleDescription("");
+
+        btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante.png"))); // NOI18N
+        btnEliminar1.setText("Eliminar");
+        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar1ActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, -1));
+
+        btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cubiertos.png"))); // NOI18N
+        btnPedido.setText("Pedido");
+        btnPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPedidoActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 120, 48));
+
+        btnModificarRegis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reanudar.png"))); // NOI18N
+        btnModificarRegis.setText("Modificar");
+        btnModificarRegis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarRegisActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnModificarRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 120, -1));
+
+        jPanel1.add(jpBonones, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, -1, 520));
+
+        jpCRUD.setEnabled(false);
         jpCRUD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
@@ -147,137 +256,9 @@ public class PersonaV extends javax.swing.JFrame {
         jpCRUD.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 60, 20));
         jpCRUD.add(txtUsuarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 180, 30));
 
-        jPanel1.add(jpCRUD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 650, 230));
+        jPanel1.add(jpCRUD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 230));
 
-        jpLista.setBackground(new java.awt.Color(153, 153, 153));
-        jpLista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jrNombreP.setText("Nombre");
-        jrNombreP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrNombrePActionPerformed(evt);
-            }
-        });
-        jpLista.add(jrNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 70, 30));
-
-        jrApellP.setText("Apellido");
-        jrApellP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrApellPActionPerformed(evt);
-            }
-        });
-        jpLista.add(jrApellP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 70, 30));
-
-        chkTodosP.setText("Todos");
-        chkTodosP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkTodosPActionPerformed(evt);
-            }
-        });
-        jpLista.add(chkTodosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 60, 30));
-
-        txtDatosP.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtDatosPCaretUpdate(evt);
-            }
-        });
-        txtDatosP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDatosPActionPerformed(evt);
-            }
-        });
-        jpLista.add(txtDatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 150, 30));
-
-        tblPersona.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblPersona.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPersonaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblPersona);
-
-        jpLista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 640, 150));
-
-        jPanel1.add(jpLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 660, 260));
-
-        jpBonones.setBackground(new java.awt.Color(153, 102, 0));
-        jpBonones.setForeground(new java.awt.Color(204, 102, 0));
-        jpBonones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
-        btnNuevo.setText("Nuevo");
-        btnNuevo.setPreferredSize(new java.awt.Dimension(64, 64));
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 48));
-
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sobre.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.setPreferredSize(new java.awt.Dimension(64, 64));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 120, 48));
-        btnGuardar.getAccessibleContext().setAccessibleDescription("");
-
-        btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante.png"))); // NOI18N
-        btnEliminar1.setText("Eliminar");
-        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar1ActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, -1));
-
-        btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cubiertos.png"))); // NOI18N
-        btnPedido.setText("Pedido");
-        btnPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPedidoActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 120, 48));
-
-        btnModificarRegis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reanudar.png"))); // NOI18N
-        btnModificarRegis.setText("Modificar");
-        btnModificarRegis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarRegisActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnModificarRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 120, -1));
-
-        jPanel1.add(jpBonones, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, -1, 520));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -436,14 +417,20 @@ public class PersonaV extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PersonaV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonaVT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PersonaV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonaVT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PersonaV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonaVT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PersonaV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonaVT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -451,9 +438,9 @@ public class PersonaV extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new PersonaV().setVisible(true);
+                    new PersonaVT().setVisible(true);
                 } catch (Exception ex) {
-                    Logger.getLogger(PersonaV.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PersonaVT.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -470,12 +457,10 @@ public class PersonaV extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkTodosP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JComboBox<String> jboxTipUsuario;
     private javax.swing.JPanel jpBonones;

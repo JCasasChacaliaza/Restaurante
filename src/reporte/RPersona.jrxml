@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c40af052-6245-4a4e-8bcc-22d4ca3305d4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codper" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select codper, nomper,apellper, docper from persona where codper = $P{codper}
+order by nomper]]>
+	</queryString>
+	<field name="codper" class="java.lang.Integer"/>
+	<field name="nomper" class="java.lang.String"/>
+	<field name="apellper" class="java.lang.String"/>
+	<field name="docper" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="0" width="261" height="62" uuid="e7b5baf6-a7f7-4a6d-84b4-056b01beff86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="GREETHING" size="56"/>
+				</textElement>
+				<text><![CDATA[Restaurante]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="303" y="0" width="232" height="137" uuid="8f46f282-8622-4612-bde5-8b034da12f76"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="331" y="0" width="186" height="39" uuid="923580eb-721a-47dc-b16a-de477b93a978"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUC:1073831114]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="42" width="100" height="34" uuid="5b8a5da3-c446-4576-9e13-e9e98ab57f04"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="76" width="121" height="27" uuid="2ac1a8fe-0ed1-4650-af0a-178e1caf4a07"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[NUMERO DE SERIE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="368" y="103" width="56" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3b414f6f-af6b-4821-956a-7650d49d5b78"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="0" width="100" height="20" uuid="929ded93-6568-4206-8527-74384a745b71"/>
+				<text><![CDATA[CODIGO PERSONA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="133" y="0" width="100" height="20" uuid="afdc6c07-7c16-49c9-a591-3269c996d4fe"/>
+				<textFieldExpression><![CDATA[$F{codper}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="20" width="100" height="20" uuid="4bdbad84-9ea8-4453-a7fa-77c02e2fc166"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="40" width="100" height="20" uuid="02bcdb92-56c9-4d88-ac24-26e717ab447a"/>
+				<text><![CDATA[APELLIDO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="133" y="40" width="100" height="20" uuid="fe86166f-cefc-4b77-ae8d-3eaf740548f4"/>
+				<textFieldExpression><![CDATA[$F{apellper}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="20" width="100" height="20" uuid="cb1b978f-92e9-4be2-b58a-9325bd90db91"/>
+				<textFieldExpression><![CDATA[$F{nomper}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="60" width="100" height="20" uuid="b30d481c-6310-4d64-be7d-b8984e7e8680"/>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="133" y="60" width="100" height="20" uuid="dee84cea-e07c-4d72-b594-97b8764ed56a"/>
+				<textFieldExpression><![CDATA[$F{docper}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="221" splitType="Stretch">
+			<rectangle>
+				<reportElement x="14" y="179" width="521" height="30" uuid="6336ed44-5794-4963-97df-844b12dc03d6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="14" y="179" width="50" height="30" uuid="46bf9b29-b427-4e33-8511-1a094309fc49"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
