@@ -1,9 +1,15 @@
 package vista.panel;
 
+import vista.control.Principal;
+
 public class SucursalV extends javax.swing.JFrame {
 
     public SucursalV() {
         initComponents();
+    }
+
+    public SucursalV(Principal aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @SuppressWarnings("unchecked")

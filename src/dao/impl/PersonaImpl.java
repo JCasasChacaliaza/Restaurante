@@ -77,6 +77,9 @@ public class PersonaImpl extends Conexion implements PersonaD {
             case 3:
                 sql = "select * from persona where apellPer like '%" + dato + "%'";
                 break;
+            case 4:
+                sql = "select * from persona where docper like '%"+ dato+ "%'";
+                break;
         }
         String datos[] = new String[8];
         Statement st = this.conectar().createStatement();

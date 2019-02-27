@@ -5,6 +5,8 @@
  */
 package vista.panel;
 
+import vista.control.Principal;
+
 /**
  *
  * @author Usuario
@@ -16,6 +18,10 @@ public class PlatosV extends javax.swing.JFrame {
      */
     public PlatosV() {
         initComponents();
+    }
+
+    public PlatosV(Principal aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

@@ -6,13 +6,18 @@ import dao.impl.PersonaImpl;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import vista.panel.ClienteV;
 import javax.swing.table.DefaultTableModel;
+import static vista.panel.ClienteV.txtApellClienV;
+import static vista.panel.ClienteV.txtDirCliV;
+import static vista.panel.ClienteV.txtNomClienV1;
 
 public class PersonaVT extends javax.swing.JFrame {
 
     public static DefaultTableModel modeloTabla;
     public int tipo = 1;
     public String dato;
+    ClienteV tabla;
     PersonaImpl dao;
     //PersonaC personaC;
     private int codigoPersona;
@@ -22,10 +27,15 @@ public class PersonaVT extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         btnGroupPersona.add(jrNombreP);
         btnGroupPersona.add(jrApellP);
+        btnGroupPersona.add(jrDocumento);
         cargar_Tabla();
         jpCRUD.setVisible(false);
         jpBonones.setVisible(false);
         jpLista.setVisible(true);
+    }
+
+    public PersonaVT(ClienteV aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void cargar_Tabla() throws Exception {
@@ -49,6 +59,7 @@ public class PersonaVT extends javax.swing.JFrame {
         txtDatosP = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPersona = new javax.swing.JTable();
+        jrDocumento = new javax.swing.JRadioButton();
         jpBonones = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -86,7 +97,7 @@ public class PersonaVT extends javax.swing.JFrame {
                 jrNombrePActionPerformed(evt);
             }
         });
-        jpLista.add(jrNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 70, 30));
+        jpLista.add(jrNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 70, 30));
 
         jrApellP.setText("Apellido");
         jrApellP.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +105,7 @@ public class PersonaVT extends javax.swing.JFrame {
                 jrApellPActionPerformed(evt);
             }
         });
-        jpLista.add(jrApellP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 70, 30));
+        jpLista.add(jrApellP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 70, 30));
 
         chkTodosP.setText("Todos");
         chkTodosP.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +113,7 @@ public class PersonaVT extends javax.swing.JFrame {
                 chkTodosPActionPerformed(evt);
             }
         });
-        jpLista.add(chkTodosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 60, 30));
+        jpLista.add(chkTodosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 60, 30));
 
         txtDatosP.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -114,7 +125,7 @@ public class PersonaVT extends javax.swing.JFrame {
                 txtDatosPActionPerformed(evt);
             }
         });
-        jpLista.add(txtDatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 150, 30));
+        jpLista.add(txtDatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 150, 30));
 
         tblPersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,7 +147,15 @@ public class PersonaVT extends javax.swing.JFrame {
 
         jpLista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 710, 150));
 
-        jPanel1.add(jpLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 550));
+        jrDocumento.setText("Documento");
+        jrDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrDocumentoActionPerformed(evt);
+            }
+        });
+        jpLista.add(jrDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, 30));
+
+        jPanel1.add(jpLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 290));
 
         jpBonones.setBackground(new java.awt.Color(153, 102, 0));
         jpBonones.setForeground(new java.awt.Color(204, 102, 0));
@@ -258,7 +277,7 @@ public class PersonaVT extends javax.swing.JFrame {
 
         jPanel1.add(jpCRUD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 230));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 550));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -328,10 +347,10 @@ public class PersonaVT extends javax.swing.JFrame {
             int fila = tblPersona.getSelectedRow();
             if (fila >= 0) {
                 codigoPersona = Integer.parseInt(tblPersona.getValueAt(fila, 0).toString());
-                txtNombre.setText(tblPersona.getValueAt(fila, 1).toString());
-                txtApellido.setText(tblPersona.getValueAt(fila, 2).toString());
+                txtNomClienV1.setText(tblPersona.getValueAt(fila, 1).toString());
+                txtApellClienV.setText(tblPersona.getValueAt(fila, 2).toString());
                 txtDoc.setText(tblPersona.getValueAt(fila, 3).toString());
-                txtDirecc1.setText(tblPersona.getValueAt(fila, 4).toString());
+                txtDirCliV.setText(tblPersona.getValueAt(fila, 4).toString());
                 jboxTipUsuario.setSelectedItem(tblPersona.getValueAt(fila, 5).toString());
                 txtUsuarCli.setText(tblPersona.getValueAt(fila, 6).toString());
                 txtPassCli.setText(tblPersona.getValueAt(fila, 7).toString());
@@ -400,6 +419,11 @@ public class PersonaVT extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPassCliActionPerformed
 
+    private void jrDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrDocumentoActionPerformed
+        tipo = 4;
+        chkTodosP.setSelected(false);
+    }//GEN-LAST:event_jrDocumentoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -467,6 +491,7 @@ public class PersonaVT extends javax.swing.JFrame {
     private javax.swing.JPanel jpCRUD;
     public static javax.swing.JPanel jpLista;
     private javax.swing.JRadioButton jrApellP;
+    private javax.swing.JRadioButton jrDocumento;
     private javax.swing.JRadioButton jrNombreP;
     private javax.swing.JTable tblPersona;
     public static javax.swing.JTextField txtApellido;

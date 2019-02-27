@@ -1,5 +1,7 @@
 package vista.panel;
 
+import vista.control.Principal;
+
 
 
 
@@ -9,6 +11,10 @@ public class VentaV extends javax.swing.JFrame {
     public VentaV() {
         initComponents();
       this.setLocationRelativeTo(null);
+    }
+
+    public VentaV(Principal aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

@@ -2,12 +2,17 @@ package vista.panel;
 
 import java.awt.BorderLayout;
 import vista.control.Bienvenida;
+import vista.control.Principal;
 import static vista.control.Principal.jpPrincipal;
 
 public class UbigeoView extends javax.swing.JPanel {
 
     public UbigeoView() {
         initComponents();
+    }
+
+    public UbigeoView(Principal aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @SuppressWarnings("unchecked")

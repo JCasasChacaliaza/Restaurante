@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import vista.control.Principal;
 
 public class PersonaV extends javax.swing.JFrame {
 
@@ -23,6 +24,10 @@ public class PersonaV extends javax.swing.JFrame {
         btnGroupPersona.add(jrApellP);
         cargar_Tabla();
 
+    }
+
+    public PersonaV(Principal aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void cargar_Tabla() throws Exception {
