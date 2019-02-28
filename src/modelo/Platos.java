@@ -1,20 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
-/**
- *
- * @author Usuario
- */
 public class Platos {
+
     private int codPlat;//codigo de platos
+    private String nomPlat;//nombre del plato 
     private String desPlat;//descripcion de platos
     private String tipPlat;//tipo de plato
     private String prePlat;//precio de plato
     private String estPlat;// estado del plato si esta disponible o no
+
+    public String getNomPlat() {
+        return nomPlat;
+    }
+
+    public void setNomPlat(String nomPlat) {
+        this.nomPlat = nomPlat;
+    }
 
     public int getCodPlat() {
         return codPlat;
@@ -59,5 +60,5 @@ public class Platos {
     public void setVisible(boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import vista.control.Principal;
+//import vista.control.Principal;
 
 public class PersonaV extends javax.swing.JFrame {
 
@@ -26,9 +26,7 @@ public class PersonaV extends javax.swing.JFrame {
 
     }
 
-    public PersonaV(Principal aThis, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     private void cargar_Tabla() throws Exception {
         String columna[] = new String[]{"Codigo", "Nombre", "Apellido", "Documento", "Direccion", "Tipo de Persona", "Usuario", "Contraseña"};

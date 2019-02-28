@@ -59,6 +59,11 @@ public class PersonaC implements Serializable {
     public void limpiar() {
         PersonaV.txtNombre.setText("");
         PersonaV.txtApellido.setText("");
+        PersonaV.txtDoc.setText("");
+        PersonaV.txtDirecc1.setText("");
+        PersonaV.txtPassCli.setText("");
+        PersonaV.txtUsuarCli.setText("");
+        
     }
 
     public void limpiarModelo() {
