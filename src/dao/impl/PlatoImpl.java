@@ -20,7 +20,7 @@ public class PlatoImpl extends Conexion implements PlatosC {
             ps.setString(1, platos.getNomPlat());
             ps.setString(2, platos.getDesPlat());
             ps.setString(3, platos.getTipPlat());
-            ps.setString(4, platos.getPrePlat());
+            ps.setDouble(4, platos.getPrePlat());
             ps.setString(5, platos.getEstPlat());
             ps.executeUpdate();
             ps.close();
@@ -39,7 +39,7 @@ public class PlatoImpl extends Conexion implements PlatosC {
             ps.setString(1, platos.getNomPlat());
             ps.setString(2, platos.getDesPlat());
             ps.setString(3, platos.getTipPlat());
-            ps.setString(4, platos.getPrePlat());
+            ps.setDouble(4, platos.getPrePlat());
             ps.setString(5, platos.getEstPlat());
             ps.setInt(6, platos.getCodPlat());
             ps.executeUpdate();

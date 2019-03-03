@@ -1,14 +1,18 @@
 package vista.panel;
 
 import dao.impl.PlatoImpl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static vista.panel.PersonaV.txtPassCli;
+import static vista.panel.PersonaV.txtUsuarCli;
 import static vista.panel.PlatosV.modeloTabla;
 import static vista.panel.PlatosV.tabla_Platos;
 import vista.tabla.PersonaVT;
-
 
 public class ClienteV extends javax.swing.JFrame {
 
@@ -18,7 +22,7 @@ public class ClienteV extends javax.swing.JFrame {
 
     DefaultTableModel m;
     public static DefaultTableModel modeloTabla2;
-    
+
     public int tipo = 1;
     public String dato;
     PlatoImpl dao;
@@ -26,15 +30,20 @@ public class ClienteV extends javax.swing.JFrame {
 
     public ClienteV() throws Exception {
         initComponents();
+        Date sistFecha = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MMM-yyyy");
+        txtFechCLV.setText(formato.format(sistFecha));
+                
         cargar_Tabla();
         grupo_Platos.add(jrbNombrePlato);
         grupo_Platos.add(jrbDescrPlato);
         grupo_Platos.add(jrbTipPlat);
-        this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);
         cargar_tabla2();
         total = 0;
         sub_total = 0.0;
         igv = 0.0;
+        
     }
 
     private void cargar_tabla2() throws Exception {
@@ -42,8 +51,6 @@ public class ClienteV extends javax.swing.JFrame {
         modeloTabla2 = new DefaultTableModel(null, columna);
         tabla_venta.setModel(modeloTabla2);
     }
-
-  
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -90,6 +97,12 @@ public class ClienteV extends javax.swing.JFrame {
         tabla_venta = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        txtSubTotal = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
+        txtIGV = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -200,6 +213,9 @@ public class ClienteV extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Direccion");
         jpCliente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 20));
+
+        txtApellClienV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtApellClienV.setEnabled(false);
         jpCliente.add(txtApellClienV, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 160, 30));
 
         btnBuscarCli.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -215,6 +231,14 @@ public class ClienteV extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("N° de Documento:");
         jpCliente.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, 20));
+
+        txtFechCLV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFechCLV.setEnabled(false);
+        txtFechCLV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechCLVActionPerformed(evt);
+            }
+        });
         jpCliente.add(txtFechCLV, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 170, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -227,17 +251,38 @@ public class ClienteV extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Tipo de comprobante:");
         jpCliente.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, 20));
+
+        txtNDocCliV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNDocCliV.setEnabled(false);
         jpCliente.add(txtNDocCliV, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 170, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Cliente:");
         jpCliente.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 20));
+
+        txtDirCliV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDirCliV.setEnabled(false);
         jpCliente.add(txtDirCliV, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 150, 30));
+
+        txtNomClienV1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNomClienV1.setEnabled(false);
         jpCliente.add(txtNomClienV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 160, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("RUC");
         jpCliente.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 70, 20));
+
+        txtRucCliV1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtRucCliV1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRucCliV1ActionPerformed(evt);
+            }
+        });
+        txtRucCliV1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRucCliV1KeyTyped(evt);
+            }
+        });
         jpCliente.add(txtRucCliV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 170, 30));
 
         jPanel1.add(jpCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 660, 200));
@@ -304,7 +349,7 @@ public class ClienteV extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_venta);
 
-        jpTabla.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 630, 230));
+        jpTabla.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 630, 220));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -320,7 +365,7 @@ public class ClienteV extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(197, 197, 197)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,7 +376,47 @@ public class ClienteV extends javax.swing.JFrame {
 
         jpTabla.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 40));
 
-        jPanel1.add(jpTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 650, 290));
+        txtSubTotal.setBackground(new java.awt.Color(204, 255, 255));
+        txtSubTotal.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        txtSubTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSubTotal.setEnabled(false);
+        txtSubTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSubTotalActionPerformed(evt);
+            }
+        });
+        jpTabla.add(txtSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 80, 30));
+
+        txtTotal.setBackground(new java.awt.Color(204, 255, 255));
+        txtTotal.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTotal.setEnabled(false);
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
+        jpTabla.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 80, 30));
+
+        txtIGV.setBackground(new java.awt.Color(204, 255, 255));
+        txtIGV.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        txtIGV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtIGV.setEnabled(false);
+        jpTabla.add(txtIGV, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 80, 30));
+
+        jLabel10.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLabel10.setText("IGV");
+        jpTabla.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLabel11.setText("sub Total");
+        jpTabla.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLabel12.setText("Total");
+        jpTabla.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, -1, -1));
+
+        jPanel1.add(jpTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 650, 330));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -356,6 +441,8 @@ public class ClienteV extends javax.swing.JFrame {
         }
         personaV.setVisible(true);
         personaV.setDefaultCloseOperation(personaV.HIDE_ON_CLOSE);
+        txtUsuarCli.setVisible(false);
+        txtPassCli.setVisible(false);
 
     }//GEN-LAST:event_jbAgregarCliVActionPerformed
 
@@ -375,7 +462,7 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarCliVActionPerformed
 
     private void btnPedidoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoCActionPerformed
-        try {           
+        try {
             cargar_Tabla();
         } catch (Exception ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
@@ -452,12 +539,10 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDatosPlatosActionPerformed
 
     private void btnAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPActionPerformed
-        
-        
-        
+
         int fila = tabla_Platos.getSelectedRow();
         try {
-            String codigo, cant, preci, nombre, importe;            
+            String codigo, cant, preci, nombre, importe;
             double calcula = 0.0, x = 0.0, igvs = 0.0;
             int canti = 0;
             if (fila == -1) {
@@ -470,14 +555,25 @@ public class ClienteV extends javax.swing.JFrame {
                 cant = txtCantidad.getText();
 
                 //Calculos
-//                x = (Double.parseDouble(preci) * Integer.parseInt(cant));
-  //              importe = String.valueOf(x);
+                x = (Double.parseDouble(preci) * Integer.parseInt(cant));
+                importe = String.valueOf(x);
 
                 //enviar datos a la otra tabla
-                
                 m = (DefaultTableModel) tabla_venta.getModel();
-                String fila2[] = {cant, nombre, preci};
+                String fila2[] = {cant, nombre, preci,importe};
                 m.addRow(fila2);
+                
+                calcula = (Double.parseDouble(preci)* Integer.parseInt(txtCantidad.getText()));
+                
+                total = total + calcula;
+                igvs = total * 0.19;
+                igv = igvs;
+                sub_total = total - igvs;
+                
+                txtTotal.setText(""+total);
+                txtIGV.setText(""+igv);
+                txtSubTotal.setText(""+sub_total);
+                
             }
         } catch (Exception e) {
             throw e;
@@ -485,6 +581,32 @@ public class ClienteV extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnAgregarPActionPerformed
+
+    private void txtSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSubTotalActionPerformed
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void txtFechCLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechCLVActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_txtFechCLVActionPerformed
+
+    private void txtRucCliV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucCliV1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRucCliV1ActionPerformed
+
+    private void txtRucCliV1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucCliV1KeyTyped
+        //validar numero
+        
+        
+        
+        
+    }//GEN-LAST:event_txtRucCliV1KeyTyped
 
     /**
      * @param args the command line arguments
@@ -533,6 +655,9 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.ButtonGroup grupo_Platos;
     public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -564,18 +689,20 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.JTextField txtDatosPlatos;
     public static javax.swing.JTextField txtDirCliV;
     public static javax.swing.JTextField txtFechCLV;
+    private javax.swing.JTextField txtIGV;
     public static javax.swing.JTextField txtNDocCliV;
     public static javax.swing.JTextField txtNomClienV1;
     public static javax.swing.JTextField txtRucCliV1;
+    private javax.swing.JTextField txtSubTotal;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
     private void cargar_Tabla() throws Exception {
-        String columna[] = new String[]{"Codigo", "Nombre", "Descripcion","Tipo de Plato", "Precios", "Estado"};
+        String columna[] = new String[]{"Codigo", "Nombre", "Descripcion", "Tipo de Plato", "Precios", "Estado"};
         modeloTabla = new DefaultTableModel(null, columna);
         dao = new PlatoImpl();
         dao.buscar(modeloTabla, tipo, dato);
         tabla_Platos.setModel(modeloTabla);
     }
 
-    
-   }
+}

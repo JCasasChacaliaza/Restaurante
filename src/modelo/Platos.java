@@ -6,7 +6,15 @@ public class Platos {
     private String nomPlat;//nombre del plato 
     private String desPlat;//descripcion de platos
     private String tipPlat;//tipo de plato
-    private String prePlat;//precio de plato
+    private double prePlat;//precio de plato
+
+    public double getPrePlat() {
+        return prePlat;
+    }
+
+    public void setPrePlat(double prePlat) {
+        this.prePlat = prePlat;
+    }
     private String estPlat;// estado del plato si esta disponible o no
 
     public String getNomPlat() {
@@ -41,13 +49,7 @@ public class Platos {
         this.tipPlat = tipPlat;
     }
 
-    public String getPrePlat() {
-        return prePlat;
-    }
 
-    public void setPrePlat(String prePlat) {
-        this.prePlat = prePlat;
-    }
 
     public String getEstPlat() {
         return estPlat;

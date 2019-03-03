@@ -44,7 +44,7 @@ public class PlatosC implements Serializable{
             platos.setNomPlat(PlatosV.txtNomPlat.getText());
             platos.setDesPlat(PlatosV.txtDescPlat3.getText());
             platos.setTipPlat((String) PlatosV.jcbxTipoPlat.getSelectedItem());
-            platos.setPrePlat(PlatosV.txtPrecPlat.getText());
+            platos.setPrePlat(Double.valueOf(PlatosV.txtPrecPlat.getText()));
             platos.setEstPlat((String)PlatosV.cboxEstadoPlato.getSelectedItem());
         } catch (Exception e) {
             System.out.println("Error en las variable"+e.getMessage());
