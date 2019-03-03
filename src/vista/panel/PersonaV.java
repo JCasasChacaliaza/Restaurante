@@ -323,12 +323,12 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void jrNombrePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrNombrePActionPerformed
-        tipo = 2;
+        tipo = 2 ;
         chkTodosP.setSelected(false);
     }//GEN-LAST:event_jrNombrePActionPerformed
 
     private void jrApellPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrApellPActionPerformed
-        tipo = 3;
+        tipo = 3 ;
         chkTodosP.setSelected(false);
     }//GEN-LAST:event_jrApellPActionPerformed
 

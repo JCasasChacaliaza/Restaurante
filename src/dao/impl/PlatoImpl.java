@@ -53,7 +53,7 @@ public class PlatoImpl extends Conexion implements PlatosC {
     public void eliminar(Platos platos) throws Exception {
         try {
             this.conectar();
-            String sql = "DELETE FROM PLATOS WHERE CODPER = ?";
+            String sql = "DELETE FROM PLATOS WHERE CODPLAT = ?";
             PreparedStatement ps = this.conectar().prepareStatement(sql);
             ps.setInt(1, platos.getCodPlat());
             ps.executeUpdate();
@@ -69,13 +69,13 @@ public class PlatoImpl extends Conexion implements PlatosC {
                 sql = "select * from PLATOS";
                 break;
             case 2:
-                sql = "select * from PLATOS where NOMPLAT like '%" + dato + "%'";
+                sql = "select * from PLATOS where nomplat like '%" + dato + "%'";
                 break;
             case 3:
-                sql = "select * from PLATOS where DESPLAT like '%" + dato + "%'";
+                sql = "select * from PLATOS where estplat like '%" + dato + "%'";
                 break;
             case 4:
-                sql = "select * from PLATOS where TIPPLAT like '%"+ dato+ "%'";
+                sql = "select * from PLATOS where tipplat like '%"+ dato + "%'";
                 break;
         }
         String datos[] = new String[6];

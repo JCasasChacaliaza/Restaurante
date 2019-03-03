@@ -14,7 +14,7 @@ public class Conexion {
             return cnx;
         }
         try {
-            String url = "jdbc:sqlserver://MARPI:1433;databaseName=Restaurante";
+            String url = "jdbc:sqlserver://MARPI:1433;databaseName=restaurante";
             String user = "usuarioSQL";
             String password = "anthony_16";
             String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";

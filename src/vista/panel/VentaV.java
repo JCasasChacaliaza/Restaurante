@@ -1,5 +1,7 @@
 package vista.panel;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import vista.control.Principal;
 
 
@@ -114,7 +116,12 @@ public class VentaV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMesa3ActionPerformed
 
     private void btnMesaUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesaUnoActionPerformed
-        ClienteV clienteV = new ClienteV();
+        ClienteV clienteV = null;
+        try {
+            clienteV = new ClienteV();
+        } catch (Exception ex) {
+            Logger.getLogger(VentaV.class.getName()).log(Level.SEVERE, null, ex);
+        }
         clienteV.setVisible(true);
         clienteV.setDefaultCloseOperation(clienteV.HIDE_ON_CLOSE);
     }//GEN-LAST:event_btnMesaUnoActionPerformed

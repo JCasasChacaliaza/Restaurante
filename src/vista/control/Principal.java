@@ -8,7 +8,6 @@ import vista.panel.MesaV;
 import vista.panel.PersonaV;
 import vista.panel.PlatosV;
 import vista.panel.SucursalV;
-
 import vista.panel.UbigeoView;
 import vista.panel.VentaV;
 
@@ -206,8 +205,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPersonaActionPerformed
 
     private void btnPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatoActionPerformed
-        PlatosV platos = new PlatosV();
+        PlatosV platos = null;
+        try {
+            platos = new PlatosV();
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         platos.setVisible(true);
+        platos.setLocationRelativeTo(null);
         platos.setDefaultCloseOperation(platos.HIDE_ON_CLOSE);
     }//GEN-LAST:event_btnPlatoActionPerformed
 

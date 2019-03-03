@@ -1,8 +1,11 @@
 package vista.panel;
 
 //import vista.control.Principal;
-
+import control.PlatosC;
 import dao.impl.PlatoImpl;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -16,7 +19,7 @@ public class PlatosV extends javax.swing.JFrame {
     
     
 
-    public PlatosV() {
+    public PlatosV() throws Exception {
         initComponents();
         grupo_Platos.add(jrbNombrePlato);
         grupo_Platos.add(jrbDescrPlato);
@@ -25,7 +28,7 @@ public class PlatosV extends javax.swing.JFrame {
         
     }
 
-    private void cargar_Tabla()throws Exception{
+    public void cargar_Tabla()throws Exception{
         String columna[] = new String[]{"Codigo", "Nombre", "Descripcion","Tipo de Plato", "Precios", "Estado"};
         modeloTabla = new DefaultTableModel(null, columna);
         dao = new PlatoImpl();
@@ -110,6 +113,12 @@ public class PlatosV extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
         jLabel3.setText("Precio");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 80, 40));
+
+        txtPrecPlat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecPlatActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtPrecPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 250, -1));
 
         jLabel8.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
@@ -126,17 +135,37 @@ public class PlatosV extends javax.swing.JFrame {
 
         btnEliminarPla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante.png"))); // NOI18N
         btnEliminarPla.setText("Eliminar");
+        btnEliminarPla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPlaActionPerformed(evt);
+            }
+        });
 
         btnModificarPla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reanudar.png"))); // NOI18N
         btnModificarPla.setText("Modificar");
+        btnModificarPla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPlaActionPerformed(evt);
+            }
+        });
 
         btnGuardarPla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sobre.png"))); // NOI18N
         btnGuardarPla.setText("Guardar");
         btnGuardarPla.setPreferredSize(new java.awt.Dimension(64, 64));
+        btnGuardarPla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarPlaActionPerformed(evt);
+            }
+        });
 
         btnNuevoPla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         btnNuevoPla.setText("Nuevo");
         btnNuevoPla.setPreferredSize(new java.awt.Dimension(64, 64));
+        btnNuevoPla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoPlaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -181,15 +210,30 @@ public class PlatosV extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla_Platos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_PlatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_Platos);
 
-        jpLista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 660, 170));
+        jpLista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 660, 160));
 
         jrbNombrePlato.setText("Nombre Plato");
+        jrbNombrePlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbNombrePlatoActionPerformed(evt);
+            }
+        });
         jpLista.add(jrbNombrePlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jrbDescrPlato.setText("Descripcion");
-        jpLista.add(jrbDescrPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        jrbDescrPlato.setText("Estado");
+        jrbDescrPlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbDescrPlatoActionPerformed(evt);
+            }
+        });
+        jpLista.add(jrbDescrPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
         jchkTodoPlato.setText("Todo");
         jchkTodoPlato.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +244,23 @@ public class PlatosV extends javax.swing.JFrame {
         jpLista.add(jchkTodoPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
 
         jrbTipPlat.setText("Tipo de Plato");
-        jpLista.add(jrbTipPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+        jrbTipPlat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbTipPlatActionPerformed(evt);
+            }
+        });
+        jpLista.add(jrbTipPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
+        txtDatosPlatos.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtDatosPlatosCaretUpdate(evt);
+            }
+        });
+        txtDatosPlatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDatosPlatosActionPerformed(evt);
+            }
+        });
         jpLista.add(txtDatosPlatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 200, 30));
 
         jPanel2.add(jpLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 680, 230));
@@ -220,8 +280,122 @@ public class PlatosV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jchkTodoPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkTodoPlatoActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (jchkTodoPlato.isSelected() == true){
+                grupo_Platos.clearSelection();
+                tipo = 1;
+                cargar_Tabla();
+                txtDatosPlatos.setText("");
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+            
+         
     }//GEN-LAST:event_jchkTodoPlatoActionPerformed
+
+    private void btnNuevoPlaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPlaActionPerformed
+        PlatosC platosC = new PlatosC(); 
+        btnEliminarPla.setEnabled(false);
+        btnModificarPla.setEnabled(false);
+        btnGuardarPla.setEnabled(true);
+        platosC.limpiarP();
+    }//GEN-LAST:event_btnNuevoPlaActionPerformed
+
+    private void btnGuardarPlaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPlaActionPerformed
+        try {
+            PlatosC platosC = new PlatosC();
+            platosC.variables();
+            platosC.registrarPlatos();
+            cargar_Tabla();
+        } catch (Exception e) {
+            System.out.println("Error en btnGuardar"+e.getMessage());
+        }
+    }//GEN-LAST:event_btnGuardarPlaActionPerformed
+
+    private void btnModificarPlaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPlaActionPerformed
+        try {
+            int option  = JOptionPane.showConfirmDialog(null,"Deseas Modificar", "Modificacion del Registro", JOptionPane.OK_OPTION);
+            if(option == JOptionPane.OK_OPTION){
+                PlatosC platosC= new PlatosC();
+                platosC.getPlatos().setCodPlat(codigoPlato);
+                platosC.variables();
+                platosC.modificarPlatos();
+                cargar_Tabla();
+                JOptionPane.showMessageDialog(null, "Registro Modificado");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnModificarPlaActionPerformed
+
+    private void btnEliminarPlaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPlaActionPerformed
+        try {
+            int fila= tabla_Platos.getSelectedRow();
+            if (fila >= 0){
+                int option = JOptionPane.showConfirmDialog(null, "Deseas eliminar Registro?", "Eliminando Registro", JOptionPane.OK_OPTION);
+                if(option == JOptionPane.OK_OPTION){
+                    codigoPlato =  Integer.parseInt(tabla_Platos.getValueAt(fila, 0).toString());
+                    PlatosC platosC = new PlatosC();
+                    platosC.variables();
+                    platosC.getPlatos().setCodPlat(codigoPlato);
+                    platosC.eliminarP();
+                    cargar_Tabla();
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnEliminarPlaActionPerformed
+
+    private void tabla_PlatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_PlatosMouseClicked
+        try {
+            int fila = tabla_Platos.getSelectedRow();
+            if(fila >=0){
+                codigoPlato =  Integer.parseInt(tabla_Platos.getValueAt(fila,0).toString());
+                txtNomPlat.setText(tabla_Platos.getValueAt(fila, 1).toString());
+                txtDescPlat3.setText(tabla_Platos.getValueAt(fila,2).toString());
+                jcbxTipoPlat.setSelectedItem(tabla_Platos.getValueAt(fila, 3).toString());
+                txtPrecPlat.setText(tabla_Platos.getValueAt(fila,4).toString());
+                cboxEstadoPlato.setSelectedItem(tabla_Platos.getValueAt(fila,5).toString());
+                btnEliminarPla.setEnabled(true);
+                btnGuardarPla.setEnabled(false);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_tabla_PlatosMouseClicked
+
+    private void jrbNombrePlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbNombrePlatoActionPerformed
+        tipo = 2 ;
+        jchkTodoPlato.setSelected(false);
+    }//GEN-LAST:event_jrbNombrePlatoActionPerformed
+
+    private void jrbDescrPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDescrPlatoActionPerformed
+        tipo = 3 ;
+        jchkTodoPlato.setSelected(false);
+    }//GEN-LAST:event_jrbDescrPlatoActionPerformed
+
+    private void jrbTipPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTipPlatActionPerformed
+        tipo = 4 ;
+        jchkTodoPlato.setSelected(false);
+    }//GEN-LAST:event_jrbTipPlatActionPerformed
+
+    private void txtDatosPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatosPlatosActionPerformed
+        
+    }//GEN-LAST:event_txtDatosPlatosActionPerformed
+
+    private void txtDatosPlatosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDatosPlatosCaretUpdate
+        try {
+            dato = txtDatosPlatos.getText();
+            cargar_Tabla();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }//GEN-LAST:event_txtDatosPlatosCaretUpdate
+
+    private void txtPrecPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecPlatActionPerformed
+        
+    }//GEN-LAST:event_txtPrecPlatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +427,11 @@ public class PlatosV extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlatosV().setVisible(true);
+                try {
+                    new PlatosV().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PlatosV.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

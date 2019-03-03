@@ -1,44 +1,68 @@
 package vista.panel;
 
+import dao.impl.PlatoImpl;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static vista.panel.PlatosV.modeloTabla;
+import static vista.panel.PlatosV.tabla_Platos;
 import vista.tabla.PersonaVT;
+
 
 public class ClienteV extends javax.swing.JFrame {
 
-        DefaultTableModel m ;
-        static double total;
-        double sub_total;
-        double igv;                
-        
-        
-    public ClienteV() {
+    static double total;
+    double sub_total;
+    double igv;
+
+    DefaultTableModel m;
+    public static DefaultTableModel modeloTabla2;
+    
+    public int tipo = 1;
+    public String dato;
+    PlatoImpl dao;
+    private int codigoPlato;
+
+    public ClienteV() throws Exception {
         initComponents();
-        this.setLocationRelativeTo(null);
+        cargar_Tabla();
+        grupo_Platos.add(jrbNombrePlato);
+        grupo_Platos.add(jrbDescrPlato);
+        grupo_Platos.add(jrbTipPlat);
+        this.setLocationRelativeTo(null);        
+        cargar_tabla2();
         total = 0;
         sub_total = 0.0;
         igv = 0.0;
-        
     }
 
- 
+    private void cargar_tabla2() throws Exception {
+        String columna[] = new String[]{"Cantidad", "Nombre", "Precio Unitario", "Importe"};
+        modeloTabla2 = new DefaultTableModel(null, columna);
+        tabla_venta.setModel(modeloTabla2);
+    }
+
+  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jdPedidoC = new javax.swing.JDialog();
-        jpTablaPedido = new javax.swing.JPanel();
-        jrTipPlatP = new javax.swing.JRadioButton();
-        jchkTodosPedidos = new javax.swing.JCheckBox();
-        txtTodosPed = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tabla_pedido = new javax.swing.JTable();
-        btnAgregarPedido = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        jdPedido = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jpLista = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla_Platos = new javax.swing.JTable();
+        jrbNombrePlato = new javax.swing.JRadioButton();
+        jrbDescrPlato = new javax.swing.JRadioButton();
+        jchkTodoPlato = new javax.swing.JCheckBox();
+        jrbTipPlat = new javax.swing.JRadioButton();
+        txtDatosPlatos = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtCantPed = new javax.swing.JTextField();
+        btnAgregarP = new javax.swing.JButton();
+        grupo_Platos = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jpCliente = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -67,17 +91,13 @@ public class ClienteV extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
-        jpTablaPedido.setBackground(new java.awt.Color(153, 153, 255));
-        jpTablaPedido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jrTipPlatP.setText("Tipo de Platos");
-        jpTablaPedido.add(jrTipPlatP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, 30));
+        jpLista.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 102, 102), 3, true));
+        jpLista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jchkTodosPedidos.setText("Todos");
-        jpTablaPedido.add(jchkTodosPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, 30));
-        jpTablaPedido.add(txtTodosPed, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 190, 30));
-
-        tabla_pedido.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_Platos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -88,36 +108,84 @@ public class ClienteV extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tabla_pedido);
-
-        jpTablaPedido.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 540, 190));
-
-        btnAgregarPedido.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnAgregarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mas.png"))); // NOI18N
-        btnAgregarPedido.setText("Agregar Pedido");
-        btnAgregarPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPedidoActionPerformed(evt);
+        tabla_Platos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_PlatosMouseClicked(evt);
             }
         });
-        jpTablaPedido.add(btnAgregarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 170, 40));
-        jpTablaPedido.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 540, 10));
+        jScrollPane2.setViewportView(tabla_Platos);
 
-        jLabel9.setText("Cantidad:");
-        jpTablaPedido.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 50, 20));
-        jpTablaPedido.add(txtCantPed, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 70, -1));
+        jpLista.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 660, 160));
 
-        javax.swing.GroupLayout jdPedidoCLayout = new javax.swing.GroupLayout(jdPedidoC.getContentPane());
-        jdPedidoC.getContentPane().setLayout(jdPedidoCLayout);
-        jdPedidoCLayout.setHorizontalGroup(
-            jdPedidoCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpTablaPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+        jrbNombrePlato.setText("Nombre Plato");
+        jrbNombrePlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbNombrePlatoActionPerformed(evt);
+            }
+        });
+        jpLista.add(jrbNombrePlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jrbDescrPlato.setText("Estado");
+        jrbDescrPlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbDescrPlatoActionPerformed(evt);
+            }
+        });
+        jpLista.add(jrbDescrPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        jchkTodoPlato.setText("Todo");
+        jchkTodoPlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchkTodoPlatoActionPerformed(evt);
+            }
+        });
+        jpLista.add(jchkTodoPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
+
+        jrbTipPlat.setText("Tipo de Plato");
+        jrbTipPlat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbTipPlatActionPerformed(evt);
+            }
+        });
+        jpLista.add(jrbTipPlat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
+        txtDatosPlatos.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtDatosPlatosCaretUpdate(evt);
+            }
+        });
+        txtDatosPlatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDatosPlatosActionPerformed(evt);
+            }
+        });
+        jpLista.add(txtDatosPlatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 200, 30));
+
+        txtCantidad.setText("1");
+        jpLista.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 90, 30));
+
+        jLabel9.setText("Cantidad");
+        jpLista.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 60, 30));
+
+        btnAgregarP.setText("Agregar Pedido");
+        btnAgregarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPActionPerformed(evt);
+            }
+        });
+        jpLista.add(btnAgregarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 170, 30));
+
+        jPanel3.add(jpLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 290));
+
+        javax.swing.GroupLayout jdPedidoLayout = new javax.swing.GroupLayout(jdPedido.getContentPane());
+        jdPedido.getContentPane().setLayout(jdPedidoLayout);
+        jdPedidoLayout.setHorizontalGroup(
+            jdPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        jdPedidoCLayout.setVerticalGroup(
-            jdPedidoCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdPedidoCLayout.createSequentialGroup()
-                .addComponent(jpTablaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        jdPedidoLayout.setVerticalGroup(
+            jdPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -202,7 +270,12 @@ public class ClienteV extends javax.swing.JFrame {
 
         btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         btnVenta.setText("Grabar Venta");
-        jpBotones.add(btnVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 130, 60));
+        btnVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentaActionPerformed(evt);
+            }
+        });
+        jpBotones.add(btnVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 140, 60));
 
         btnPedidoC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cubiertos.png"))); // NOI18N
         btnPedidoC.setText("Pedido");
@@ -231,7 +304,7 @@ public class ClienteV extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_venta);
 
-        jpTabla.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 640, 230));
+        jpTabla.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 630, 230));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -287,14 +360,14 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jbAgregarCliVActionPerformed
 
     private void btnBuscarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCliActionPerformed
-         PersonaVT persona = null;
+        PersonaVT persona = null;
         try {
             persona = new PersonaVT();
         } catch (Exception ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
-         persona.setVisible(true);
-         persona.setDefaultCloseOperation(persona.HIDE_ON_CLOSE);
+        persona.setVisible(true);
+        persona.setDefaultCloseOperation(persona.HIDE_ON_CLOSE);
     }//GEN-LAST:event_btnBuscarCliActionPerformed
 
     private void jbCancelarCliVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarCliVActionPerformed
@@ -302,40 +375,116 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarCliVActionPerformed
 
     private void btnPedidoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoCActionPerformed
-            jdPedidoC.setSize(660, 440);
-            jdPedidoC.setLocationRelativeTo(null);
-            jdPedidoC.setModal(true);
-            jdPedidoC.setVisible(true);
-            
+        try {           
+            cargar_Tabla();
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jdPedido.setSize(700, 400);
+        jdPedido.setVisible(true);
+        jdPedido.setModal(true);
+        jdPedido.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_btnPedidoCActionPerformed
 
-    private void btnAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPedidoActionPerformed
-        int fila = tabla_pedido.getSelectedRow();
+    private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVentaActionPerformed
+
+    private void tabla_PlatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_PlatosMouseClicked
+        // try {
+        //   int fila = tabla_Platos.getSelectedRow();
+        // if(fila >=0){
+        //   codigoPlato =  Integer.parseInt(tabla_Platos.getValueAt(fila,0).toString());
+        // txtNomPlat.setText(tabla_Platos.getValueAt(fila, 1).toString());
+        // txtDescPlat3.setText(tabla_Platos.getValueAt(fila,2).toString());
+        //jcbxTipoPlat.setSelectedItem(tabla_Platos.getValueAt(fila, 3).toString());
+        //txtPrecPlat.setText(tabla_Platos.getValueAt(fila,4).toString());
+        //cboxEstadoPlato.setSelectedItem(tabla_Platos.getValueAt(fila,5).toString());
+        //btnEliminarPla.setEnabled(true);
+        //btnGuardarPla.setEnabled(false);
+        // }
+        //} catch (Exception e) {
+        //  System.out.println(e.getMessage());
+        //}
+    }//GEN-LAST:event_tabla_PlatosMouseClicked
+
+    private void jrbNombrePlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbNombrePlatoActionPerformed
+        tipo = 2;
+        jchkTodoPlato.setSelected(false);
+    }//GEN-LAST:event_jrbNombrePlatoActionPerformed
+
+    private void jrbDescrPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDescrPlatoActionPerformed
+        tipo = 3;
+        jchkTodoPlato.setSelected(false);
+    }//GEN-LAST:event_jrbDescrPlatoActionPerformed
+
+    private void jchkTodoPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkTodoPlatoActionPerformed
         try {
-            String codigo, descripcion, tipo, precio ,estado, cant, importe;
-            double calcula = 0.0 , x= 0.0, igvs = 0.0 ;
-            int cantidad = 0;
-            
-            if(fila==-1){
-                JOptionPane.showMessageDialog(null, "Debe Seleccionar un producto","Advertencia",JOptionPane.WARNING_MESSAGE  );
-            }else{
-                m = (DefaultTableModel) tabla_pedido.getModel();
-                codigo = tabla_pedido.getValueAt(fila, 0 ).toString();
-                descripcion = tabla_pedido.getValueAt(fila, 1).toString();
-                tipo = tabla_pedido.getValueAt(fila, 2).toString();
-                precio = tabla_pedido.getValueAt(fila,3).toString();
-                estado= tabla_pedido.getValueAt(fila, 4).toString();
-                cant = txtCantPed.getText();
-                
-                x= (Double.parseDouble(precio)* Integer.parseInt(cant));
-                importe = String.valueOf(x);
-                
+            if (jchkTodoPlato.isSelected() == true) {
+                grupo_Platos.clearSelection();
+                tipo = 1;
+                cargar_Tabla();
+                txtDatosPlatos.setText("");
             }
         } catch (Exception e) {
+            e.getMessage();
         }
+
+    }//GEN-LAST:event_jchkTodoPlatoActionPerformed
+
+    private void jrbTipPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTipPlatActionPerformed
+        tipo = 4;
+        jchkTodoPlato.setSelected(false);
+    }//GEN-LAST:event_jrbTipPlatActionPerformed
+
+    private void txtDatosPlatosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDatosPlatosCaretUpdate
+        try {
+            dato = txtDatosPlatos.getText();
+            cargar_Tabla();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }//GEN-LAST:event_txtDatosPlatosCaretUpdate
+
+    private void txtDatosPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatosPlatosActionPerformed
+
+    }//GEN-LAST:event_txtDatosPlatosActionPerformed
+
+    private void btnAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPActionPerformed
         
         
-    }//GEN-LAST:event_btnAgregarPedidoActionPerformed
+        
+        int fila = tabla_Platos.getSelectedRow();
+        try {
+            String codigo, cant, preci, nombre, importe;            
+            double calcula = 0.0, x = 0.0, igvs = 0.0;
+            int canti = 0;
+            if (fila == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccione un dato", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else {
+                m = (DefaultTableModel) tabla_Platos.getModel();
+                codigo = tabla_Platos.getValueAt(fila, 0).toString();
+                nombre = tabla_Platos.getValueAt(fila, 1).toString();
+                preci = tabla_Platos.getValueAt(fila, 4).toString();
+                cant = txtCantidad.getText();
+
+                //Calculos
+//                x = (Double.parseDouble(preci) * Integer.parseInt(cant));
+  //              importe = String.valueOf(x);
+
+                //enviar datos a la otra tabla
+                
+                m = (DefaultTableModel) tabla_venta.getModel();
+                String fila2[] = {cant, nombre, preci};
+                m.addRow(fila2);
+            }
+        } catch (Exception e) {
+            throw e;
+
+        }
+
+    }//GEN-LAST:event_btnAgregarPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,16 +516,21 @@ public class ClienteV extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClienteV().setVisible(true);
+                try {
+                    new ClienteV().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarPedido;
+    private javax.swing.JButton btnAgregarP;
     private javax.swing.JButton btnBuscarCli;
     private javax.swing.JButton btnPedidoC;
     public static javax.swing.JButton btnVenta;
+    private javax.swing.ButtonGroup grupo_Platos;
     public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -389,27 +543,39 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JButton jbAgregarCliV;
     public static javax.swing.JButton jbCancelarCliV;
-    private javax.swing.JCheckBox jchkTodosPedidos;
-    private javax.swing.JDialog jdPedidoC;
+    private javax.swing.JCheckBox jchkTodoPlato;
+    private javax.swing.JDialog jdPedido;
     private javax.swing.JPanel jpBotones;
     private javax.swing.JPanel jpCliente;
+    private javax.swing.JPanel jpLista;
     private javax.swing.JPanel jpTabla;
-    private javax.swing.JPanel jpTablaPedido;
-    private javax.swing.JRadioButton jrTipPlatP;
-    private javax.swing.JTable tabla_pedido;
-    private javax.swing.JTable tabla_venta;
+    private javax.swing.JRadioButton jrbDescrPlato;
+    private javax.swing.JRadioButton jrbNombrePlato;
+    private javax.swing.JRadioButton jrbTipPlat;
+    public static javax.swing.JTable tabla_Platos;
+    public static javax.swing.JTable tabla_venta;
     public static javax.swing.JTextField txtApellClienV;
-    private javax.swing.JTextField txtCantPed;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtDatosPlatos;
     public static javax.swing.JTextField txtDirCliV;
     public static javax.swing.JTextField txtFechCLV;
     public static javax.swing.JTextField txtNDocCliV;
     public static javax.swing.JTextField txtNomClienV1;
     public static javax.swing.JTextField txtRucCliV1;
-    private javax.swing.JTextField txtTodosPed;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void cargar_Tabla() throws Exception {
+        String columna[] = new String[]{"Codigo", "Nombre", "Descripcion","Tipo de Plato", "Precios", "Estado"};
+        modeloTabla = new DefaultTableModel(null, columna);
+        dao = new PlatoImpl();
+        dao.buscar(modeloTabla, tipo, dato);
+        tabla_Platos.setModel(modeloTabla);
+    }
+
+    
+   }

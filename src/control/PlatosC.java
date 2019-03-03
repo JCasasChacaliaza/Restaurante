@@ -1,4 +1,4 @@
-package control;
+ package control;
 
 import dao.impl.PlatoImpl;
 import java.io.Serializable;
@@ -16,11 +16,18 @@ public class PlatosC implements Serializable{
         platos = new Platos();
         dao = new PlatoImpl();
     }
-    public void  registrarPlatos(){
+    public void registrarPlatos(){
         try {
             dao.insertar(platos);
         } catch (Exception e) {
             System.out.println("Error en registarPlatosC " + e.getMessage());
+        }
+    }
+    public void eliminarP(){
+        try {
+            dao.eliminar(platos);
+        } catch (Exception e) {
+            System.out.println("Error en eliminar"+e.getMessage());
         }
     }
     
