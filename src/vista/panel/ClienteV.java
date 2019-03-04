@@ -46,7 +46,7 @@ public class ClienteV extends javax.swing.JFrame {
         Date sistFecha = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MMM/yyyy");
         txtFechCLV.setText(formato.format(sistFecha));
-        txtNDocCliV.setText(""+(codiVen+8));
+        txtNDocCliV.setText(""+(codiVen+11));
         cargar_Tabla();
         grupo_Platos.add(jrbNombrePlato);
         grupo_Platos.add(jrbDescrPlato);
@@ -528,7 +528,7 @@ public class ClienteV extends javax.swing.JFrame {
                 
                 String ruta = "src\\reporte\\RPersona.jasper";
                 Map parametro = new HashMap();
-                parametro.put("codven", txtNDocCliV.getText());
+                parametro.put("codven", Integer.valueOf( txtNDocCliV.getText()));
                 JasperPrint informe = JasperFillManager.fillReport(ruta, parametro, cn.conectar());
                 JasperViewer ventana = new JasperViewer(informe, false);
                 ventana.setTitle("Factura");
@@ -540,9 +540,9 @@ public class ClienteV extends javax.swing.JFrame {
             if (jComboBox1.getSelectedItem().equals("BOLETE")) {
             try {
                 cn.conectar();                
-                String ruta = "RPersona.jasper";
+                String ruta = "src\\reporte\\RPersona.jasper";
                 Map parametro = new HashMap();
-                parametro.put("codven", txtNDocCliV.getText());
+                parametro.put("codven",Integer.valueOf(txtNDocCliV.getText()));
                 JasperPrint informe = JasperFillManager.fillReport(ruta, parametro, cn.conectar());
                 JasperViewer ventana = new JasperViewer(informe, false);
                 ventana.setVisible(true);
@@ -620,14 +620,14 @@ public class ClienteV extends javax.swing.JFrame {
     private void btnAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPActionPerformed
         int fila = tabla_Platos.getSelectedRow();
         try {
-            String  cant, preci, nombre, importe;
+            String  cant, preci, nombre, importe, codigo;
             double calcula = 0.0, x = 0.0;
-            int canti = 0, igvs = 0, codigo = 1;
+            int canti = 0, igvs = 0;
             if (fila == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione un dato", "Advertencia", JOptionPane.WARNING_MESSAGE);
             } else {
                 m = (DefaultTableModel) tabla_Platos.getModel();
-                codigoPlato = Integer.parseInt(tabla_Platos.getValueAt(fila, 0).toString());
+                codigo = tabla_Platos.getValueAt(fila, 0).toString();
                 nombre = tabla_Platos.getValueAt(fila, 1).toString();
                 preci = tabla_Platos.getValueAt(fila, 4).toString();
                 cant = txtCantidad.getText();
@@ -638,7 +638,7 @@ public class ClienteV extends javax.swing.JFrame {
 
                 //enviar datos a la otra tabla
                 m = (DefaultTableModel) tabla_venta.getModel();
-                String fila2[] = {String.valueOf(codigoPlato) ,cant, nombre, preci, importe};
+                String fila2[] = {codigo ,cant, nombre, preci, importe};
                 m.addRow(fila2);
 
                 calcula = (Double.parseDouble(preci) * Integer.parseInt(txtCantidad.getText()));

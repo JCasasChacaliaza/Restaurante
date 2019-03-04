@@ -35,3 +35,7 @@ separar una tabla persona con una tabla cliente(aun en analisis)
 no es buena idea colocar un frame para el cliente
 ---------------------------------------------------------------
 perdiendo el tiempo con el jDialog llamodo desde el frame para el llenado del producto(560x360)
+----------------------------------------------------------------
+Problema al realizar la boleta de reporte en el sistema, 
+
+no se logro hacer la facturacio
