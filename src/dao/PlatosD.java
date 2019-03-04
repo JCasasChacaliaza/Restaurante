@@ -2,7 +2,7 @@ package dao;
 
 import modelo.Platos;
 
-public interface PlatosC {
+public interface PlatosD {
     
     void insertar(Platos platos)throws Exception;
     

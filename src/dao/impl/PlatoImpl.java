@@ -1,14 +1,14 @@
 package dao.impl;
 
 import dao.Conexion;
-import dao.PlatosC;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import modelo.Platos;
+import dao.PlatosD;
 
-public class PlatoImpl extends Conexion implements PlatosC {
+public class PlatoImpl extends Conexion implements PlatosD {
 
     public static int cantidad;
 

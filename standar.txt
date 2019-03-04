@@ -1,0 +1,37 @@
+creando base de datos en SQLServer 
+-- resolviendo problemas coneccion TCP abriendo el puerto 1433 para la conexion con java 
+-------------------------------------------
+-terminar con los frame
+---120x48 botones
+----botones a 32px
+---700x600 from
+---tamaño de letra 57
+---panel 660x360
+--- reacer el frame desde cero aplicando metodologia MVC y rediceñar los panes cliente y persona,
+------------------------------------------
+--crear la base de datos
+--crear los accesos a la base de datos
+------------------------------------------------
+--crear loguin en java
+
+-------------------------------------------
+-avanzar con los controlador 
+--BAJAR LA BASE DE DATOS 
+-realizar la conexion
+--Realizar el CRUD
+-revisar los datos
+--- REVISAR LOS DETALLES QUE FALTAN
+------------------------------------------------------------------
+las comandas (listado final)
+crear jpanel para las mesas y realizar los pedidos en una tabla 
+----------------------------------
+los comando de (guardar, modificar, listar y eliminar (CRUD), no funcionan , revisando todo una ves mas para resolver problema
+-----------------------------------------------------------------
+Rediseñar tabla persona en la base de datos
+------------------------------------------------------------
+ya se realiza el CRUD (modificacion en la tabla persona)
+separar una tabla persona con una tabla cliente(aun en analisis)
+----------------------------------------------------------------
+no es buena idea colocar un frame para el cliente
+---------------------------------------------------------------
+perdiendo el tiempo con el jDialog llamodo desde el frame para el llenado del producto(560x360)

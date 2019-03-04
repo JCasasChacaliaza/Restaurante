@@ -1,13 +1,25 @@
 package vista.panel;
 
+import control.VentaC;
 import dao.impl.PlatoImpl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import dao.Conexion;
+import static dao.Conexion.conectar;
+import java.sql.PreparedStatement;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.ldap.HasControls;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import static vista.panel.PersonaV.txtPassCli;
 import static vista.panel.PersonaV.txtUsuarCli;
 import static vista.panel.PlatosV.modeloTabla;
@@ -18,7 +30,7 @@ public class ClienteV extends javax.swing.JFrame {
 
     static double total;
     double sub_total;
-    double igv;
+    int igv;
 
     DefaultTableModel m;
     public static DefaultTableModel modeloTabla2;
@@ -27,27 +39,30 @@ public class ClienteV extends javax.swing.JFrame {
     public String dato;
     PlatoImpl dao;
     private int codigoPlato;
+    private int codiVen ; 
 
     public ClienteV() throws Exception {
         initComponents();
         Date sistFecha = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MMM/yyyy");
         txtFechCLV.setText(formato.format(sistFecha));
-                
+        txtNDocCliV.setText(""+(codiVen+8));
         cargar_Tabla();
         grupo_Platos.add(jrbNombrePlato);
         grupo_Platos.add(jrbDescrPlato);
         grupo_Platos.add(jrbTipPlat);
+        txtCodiCliente.setVisible(false);
+        txtCodMesa.setVisible(false);
         this.setLocationRelativeTo(null);
         cargar_tabla2();
         total = 0;
         sub_total = 0.0;
-        igv = 0.0;
-        
+        igv = 0;
+
     }
 
     private void cargar_tabla2() throws Exception {
-        String columna[] = new String[]{"Cantidad", "Nombre", "Precio Unitario", "Importe"};
+        String columna[] = new String[]{"Codigo","Cantidad", "Nombre", "Precio Unitario", "Importe"};
         modeloTabla2 = new DefaultTableModel(null, columna);
         tabla_venta.setModel(modeloTabla2);
     }
@@ -86,6 +101,8 @@ public class ClienteV extends javax.swing.JFrame {
         txtNomClienV1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtRucCliV1 = new javax.swing.JTextField();
+        txtCodiCliente = new javax.swing.JTextField();
+        txtCodMesa = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jpBotones = new javax.swing.JPanel();
         jbAgregarCliV = new javax.swing.JButton();
@@ -253,7 +270,13 @@ public class ClienteV extends javax.swing.JFrame {
         jpCliente.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, 20));
 
         txtNDocCliV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNDocCliV.setDragEnabled(true);
         txtNDocCliV.setEnabled(false);
+        txtNDocCliV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNDocCliVActionPerformed(evt);
+            }
+        });
         jpCliente.add(txtNDocCliV, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 170, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -270,7 +293,7 @@ public class ClienteV extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("RUC");
-        jpCliente.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 70, 20));
+        jpCliente.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 70, 20));
 
         txtRucCliV1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtRucCliV1.addActionListener(new java.awt.event.ActionListener() {
@@ -283,7 +306,22 @@ public class ClienteV extends javax.swing.JFrame {
                 txtRucCliV1KeyTyped(evt);
             }
         });
-        jpCliente.add(txtRucCliV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 170, 30));
+        jpCliente.add(txtRucCliV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 170, 30));
+
+        txtCodiCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodiClienteActionPerformed(evt);
+            }
+        });
+        jpCliente.add(txtCodiCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 150, 30));
+
+        txtCodMesa.setText("3");
+        txtCodMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodMesaActionPerformed(evt);
+            }
+        });
+        jpCliente.add(txtCodMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 110, 30));
 
         jPanel1.add(jpCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 660, 200));
 
@@ -475,7 +513,48 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPedidoCActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-        // TODO add your handling code here:
+            
+        try {
+            VentaC ventaC = new VentaC();
+            ventaC.variable();
+            ventaC.insertarVenta();
+        } catch (Exception e) {
+            System.out.println("Error en el boton de venta " + e.getMessage());
+        }
+        Conexion cn = new Conexion();
+        if (jComboBox1.getSelectedItem().equals("FACTURA")) {
+            try {
+                cn.conectar();
+                
+                String ruta = "src\\reporte\\RPersona.jasper";
+                Map parametro = new HashMap();
+                parametro.put("codven", txtNDocCliV.getText());
+                JasperPrint informe = JasperFillManager.fillReport(ruta, parametro, cn.conectar());
+                JasperViewer ventana = new JasperViewer(informe, false);
+                ventana.setTitle("Factura");
+                ventana.setVisible(true);
+            } catch (Exception e) {
+                System.out.println("Error en el Reporte " + e.getMessage());
+            }
+        }else{
+            if (jComboBox1.getSelectedItem().equals("BOLETE")) {
+            try {
+                cn.conectar();                
+                String ruta = "RPersona.jasper";
+                Map parametro = new HashMap();
+                parametro.put("codven", txtNDocCliV.getText());
+                JasperPrint informe = JasperFillManager.fillReport(ruta, parametro, cn.conectar());
+                JasperViewer ventana = new JasperViewer(informe, false);
+                ventana.setVisible(true);
+                ventana.setTitle("BOLETA");
+                
+            } catch (Exception e) {
+                System.out.println("Error en el Reporte " + e.getMessage());
+            }
+            
+        }
+
+        }
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void tabla_PlatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_PlatosMouseClicked
@@ -539,17 +618,16 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDatosPlatosActionPerformed
 
     private void btnAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPActionPerformed
-
         int fila = tabla_Platos.getSelectedRow();
         try {
-            String codigo, cant, preci, nombre, importe;
-            double calcula = 0.0, x = 0.0, igvs = 0.0;
-            int canti = 0;
+            String  cant, preci, nombre, importe;
+            double calcula = 0.0, x = 0.0;
+            int canti = 0, igvs = 0, codigo = 1;
             if (fila == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione un dato", "Advertencia", JOptionPane.WARNING_MESSAGE);
             } else {
                 m = (DefaultTableModel) tabla_Platos.getModel();
-                codigo = tabla_Platos.getValueAt(fila, 0).toString();
+                codigoPlato = Integer.parseInt(tabla_Platos.getValueAt(fila, 0).toString());
                 nombre = tabla_Platos.getValueAt(fila, 1).toString();
                 preci = tabla_Platos.getValueAt(fila, 4).toString();
                 cant = txtCantidad.getText();
@@ -560,20 +638,20 @@ public class ClienteV extends javax.swing.JFrame {
 
                 //enviar datos a la otra tabla
                 m = (DefaultTableModel) tabla_venta.getModel();
-                String fila2[] = {cant, nombre, preci,importe};
+                String fila2[] = {String.valueOf(codigoPlato) ,cant, nombre, preci, importe};
                 m.addRow(fila2);
-                
-                calcula = (Double.parseDouble(preci)* Integer.parseInt(txtCantidad.getText()));
-                
+
+                calcula = (Double.parseDouble(preci) * Integer.parseInt(txtCantidad.getText()));
+
                 total = total + calcula;
-                igvs = total * 0.19;
+                igvs = (int) (total * 0.19);
                 igv = igvs;
                 sub_total = total - igvs;
-                
-                txtTotal.setText(""+total);
-                txtIGV.setText(""+igv);
-                txtSubTotal.setText(""+sub_total);
-                
+
+                txtTotal.setText("" + total);
+                txtIGV.setText("" + igv);
+                txtSubTotal.setText("" + sub_total);
+
             }
         } catch (Exception e) {
             throw e;
@@ -591,9 +669,8 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalActionPerformed
 
     private void txtFechCLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechCLVActionPerformed
-        
-        
-        
+
+
     }//GEN-LAST:event_txtFechCLVActionPerformed
 
     private void txtRucCliV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucCliV1ActionPerformed
@@ -602,11 +679,21 @@ public class ClienteV extends javax.swing.JFrame {
 
     private void txtRucCliV1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucCliV1KeyTyped
         //validar numero
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_txtRucCliV1KeyTyped
+
+    private void txtCodiClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodiClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodiClienteActionPerformed
+
+    private void txtCodMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodMesaActionPerformed
+
+    private void txtNDocCliVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNDocCliVActionPerformed
+            
+    }//GEN-LAST:event_txtNDocCliVActionPerformed
 
     /**
      * @param args the command line arguments
@@ -686,15 +773,17 @@ public class ClienteV extends javax.swing.JFrame {
     public static javax.swing.JTable tabla_venta;
     public static javax.swing.JTextField txtApellClienV;
     private javax.swing.JTextField txtCantidad;
+    public static javax.swing.JTextField txtCodMesa;
+    public static javax.swing.JTextField txtCodiCliente;
     private javax.swing.JTextField txtDatosPlatos;
     public static javax.swing.JTextField txtDirCliV;
     public static javax.swing.JTextField txtFechCLV;
-    private javax.swing.JTextField txtIGV;
+    public static javax.swing.JTextField txtIGV;
     public static javax.swing.JTextField txtNDocCliV;
     public static javax.swing.JTextField txtNomClienV1;
     public static javax.swing.JTextField txtRucCliV1;
-    private javax.swing.JTextField txtSubTotal;
-    private javax.swing.JTextField txtTotal;
+    public static javax.swing.JTextField txtSubTotal;
+    public static javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
     private void cargar_Tabla() throws Exception {

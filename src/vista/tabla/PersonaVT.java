@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import vista.panel.ClienteV;
 import javax.swing.table.DefaultTableModel;
 import static vista.panel.ClienteV.txtApellClienV;
+import static vista.panel.ClienteV.txtCodiCliente;
 import static vista.panel.ClienteV.txtDirCliV;
 import static vista.panel.ClienteV.txtNomClienV1;
 
@@ -346,7 +347,7 @@ public class PersonaVT extends javax.swing.JFrame {
         try {
             int fila = tblPersona.getSelectedRow();
             if (fila >= 0) {
-                codigoPersona = Integer.parseInt(tblPersona.getValueAt(fila, 0).toString());
+                txtCodiCliente.setText((tblPersona.getValueAt(fila, 0).toString()));
                 txtNomClienV1.setText(tblPersona.getValueAt(fila, 1).toString());
                 txtApellClienV.setText(tblPersona.getValueAt(fila, 2).toString());
                 txtDoc.setText(tblPersona.getValueAt(fila, 3).toString());
