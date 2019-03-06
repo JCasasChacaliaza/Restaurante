@@ -1,5 +1,6 @@
-package vista.panel;
+package vista.tabla;
 
+import vista.panel.*;
 import control.PersonaC;
 import dao.impl.PersonaImpl;
 import java.util.logging.Level;
@@ -8,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 //import vista.control.Principal;
 
-public class PersonaV extends javax.swing.JFrame {
+public class PersonaVTI extends javax.swing.JFrame {
 
     public static DefaultTableModel modeloTabla;
     public int tipo = 1;
@@ -17,7 +18,7 @@ public class PersonaV extends javax.swing.JFrame {
     //PersonaC personaC;
     private int codigoPersona;
 
-    public PersonaV() throws Exception {
+    public PersonaVTI() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         btnGroupPersona.add(jrNombreP);
@@ -29,7 +30,7 @@ public class PersonaV extends javax.swing.JFrame {
     
 
     private void cargar_Tabla() throws Exception {
-        String columna[] = new String[]{"Codigo", "Nombre", "Apellido", "Documento", "Direccion", "Tipo de Persona", "Usuario", "Contraseña"};
+        String columna[] = new String[]{"Codigo", "Nombre", "Apellido", "Documento", "Direccion", "Tipo de Persona"};
         modeloTabla = new DefaultTableModel(null, columna);
         dao = new PersonaImpl();
         dao.buscar(modeloTabla, tipo, dato);
@@ -46,18 +47,14 @@ public class PersonaV extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jpCRUD = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtDoc = new javax.swing.JTextField();
+        txtDocVTI = new javax.swing.JTextField();
         boxDoc = new javax.swing.JComboBox<>();
-        txtNombre = new javax.swing.JTextField();
-        txtPassCli = new javax.swing.JTextField();
+        txtNombreVTI = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JTextField();
-        jboxTipUsuario = new javax.swing.JComboBox<>();
+        txtApellidoVTI = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtDirecc1 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtUsuarCli = new javax.swing.JTextField();
+        txtDireccVTI = new javax.swing.JTextField();
+        txtCliente = new javax.swing.JTextField();
         jpLista = new javax.swing.JPanel();
         jrNombreP = new javax.swing.JRadioButton();
         jrApellP = new javax.swing.JRadioButton();
@@ -94,16 +91,12 @@ public class PersonaV extends javax.swing.JFrame {
         jLabel1.setText("Nombre");
         jpCRUD.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 36));
 
-        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
-        jLabel2.setText("Password");
-        jpCRUD.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 70, 20));
-
-        txtDoc.addActionListener(new java.awt.event.ActionListener() {
+        txtDocVTI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocActionPerformed(evt);
+                txtDocVTIActionPerformed(evt);
             }
         });
-        jpCRUD.add(txtDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 160, 30));
+        jpCRUD.add(txtDocVTI, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 160, 30));
 
         boxDoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "RUC" }));
         boxDoc.addActionListener(new java.awt.event.ActionListener() {
@@ -111,44 +104,28 @@ public class PersonaV extends javax.swing.JFrame {
                 boxDocActionPerformed(evt);
             }
         });
-        jpCRUD.add(boxDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 90, 30));
-        jpCRUD.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 180, 30));
-
-        txtPassCli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassCliActionPerformed(evt);
-            }
-        });
-        jpCRUD.add(txtPassCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 180, 30));
+        jpCRUD.add(boxDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 90, 30));
+        jpCRUD.add(txtNombreVTI, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 180, 30));
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel6.setText("Apellido");
         jpCRUD.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 102, 20));
 
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+        txtApellidoVTI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
+                txtApellidoVTIActionPerformed(evt);
             }
         });
-        jpCRUD.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 180, 30));
-
-        jboxTipUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipos de Usuarios", "Cliente", "Administrador", "Mozo", "Cajero" }));
-        jboxTipUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jboxTipUsuarioActionPerformed(evt);
-            }
-        });
-        jpCRUD.add(jboxTipUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 140, -1));
+        jpCRUD.add(txtApellidoVTI, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 180, 30));
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
         jLabel7.setText("Direccion");
         jpCRUD.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 102, 20));
-        jpCRUD.add(txtDirecc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 180, 30));
+        jpCRUD.add(txtDireccVTI, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 180, 30));
 
-        jLabel8.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 19)); // NOI18N
-        jLabel8.setText("Usuario");
-        jpCRUD.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 60, 20));
-        jpCRUD.add(txtUsuarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 180, 30));
+        txtCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCliente.setText("Cliente");
+        jpCRUD.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 90, 30));
 
         jPanel1.add(jpCRUD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 650, 230));
 
@@ -289,9 +266,9 @@ public class PersonaV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxDocActionPerformed
 
-    private void txtDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocActionPerformed
+    private void txtDocVTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocVTIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocActionPerformed
+    }//GEN-LAST:event_txtDocVTIActionPerformed
 
     private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
         VentaV venta = new VentaV();
@@ -299,14 +276,14 @@ public class PersonaV extends javax.swing.JFrame {
         venta.setDefaultCloseOperation(venta.HIDE_ON_CLOSE);
     }//GEN-LAST:event_btnPedidoActionPerformed
 
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+    private void txtApellidoVTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoVTIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoActionPerformed
+    }//GEN-LAST:event_txtApellidoVTIActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             PersonaC personaC = new PersonaC();
-            personaC.variable();
+            personaC.PersonaII();
             personaC.registrarPersona();
             cargar_Tabla();
         } catch (Exception e) {
@@ -319,7 +296,7 @@ public class PersonaV extends javax.swing.JFrame {
         btnGuardar.setEnabled(true);
         btnModificarRegis.setEnabled(false);
         btnEliminar1.setEnabled(false);
-        personaC.limpiar();
+        personaC.limpiarII();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void jrNombrePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrNombrePActionPerformed
@@ -350,13 +327,12 @@ public class PersonaV extends javax.swing.JFrame {
             int fila = tblPersona.getSelectedRow();
             if (fila >= 0) {
                 codigoPersona = Integer.parseInt(tblPersona.getValueAt(fila, 0).toString());
-                txtNombre.setText(tblPersona.getValueAt(fila, 1).toString());
-                txtApellido.setText(tblPersona.getValueAt(fila, 2).toString());
-                txtDoc.setText(tblPersona.getValueAt(fila, 3).toString());
-                txtDirecc1.setText(tblPersona.getValueAt(fila, 4).toString());
-                jboxTipUsuario.setSelectedItem(tblPersona.getValueAt(fila, 5).toString());
-                txtUsuarCli.setText(tblPersona.getValueAt(fila, 6).toString());
-                txtPassCli.setText(tblPersona.getValueAt(fila, 7).toString());
+                txtNombreVTI.setText(tblPersona.getValueAt(fila, 1).toString());
+                txtApellidoVTI.setText(tblPersona.getValueAt(fila, 2).toString());
+                txtDocVTI.setText(tblPersona.getValueAt(fila, 3).toString());
+                txtDireccVTI.setText(tblPersona.getValueAt(fila, 4).toString());
+                txtCliente.setText(tblPersona.getValueAt(fila, 5).toString());
+                
                 btnEliminar1.setEnabled(true);
                 btnGuardar.setEnabled(false);
             }
@@ -371,7 +347,7 @@ public class PersonaV extends javax.swing.JFrame {
             if (option == JOptionPane.OK_OPTION) {
                 PersonaC personaC = new PersonaC();
                 personaC.getPersona().setCodPer(codigoPersona);
-                personaC.variable();
+                personaC.PersonaII();
                 personaC.modificarPersona();
                 cargar_Tabla();
                 JOptionPane.showMessageDialog(null, "Registro modificado");
@@ -389,7 +365,7 @@ public class PersonaV extends javax.swing.JFrame {
                 if (option == JOptionPane.OK_OPTION) {
                     codigoPersona = Integer.parseInt(tblPersona.getValueAt(fila, 0).toString());
                     PersonaC personaC = new PersonaC();
-                    personaC.variable();
+                    personaC.PersonaII();
                     personaC.getPersona().setCodPer(codigoPersona);
                     personaC.eliminarPersona();
                     cargar_Tabla();
@@ -411,17 +387,8 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDatosPCaretUpdate
 
     private void txtDatosPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatosPActionPerformed
-        
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtDatosPActionPerformed
-
-    private void jboxTipUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jboxTipUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jboxTipUsuarioActionPerformed
-
-    private void txtPassCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassCliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,14 +407,16 @@ public class PersonaV extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PersonaV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonaVTI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PersonaV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonaVTI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PersonaV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonaVTI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PersonaV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonaVTI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -455,9 +424,9 @@ public class PersonaV extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new PersonaV().setVisible(true);
+                    new PersonaVTI().setVisible(true);
                 } catch (Exception ex) {
-                    Logger.getLogger(PersonaV.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PersonaVTI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -473,27 +442,23 @@ public class PersonaV extends javax.swing.JFrame {
     public static javax.swing.JButton btnPedido;
     private javax.swing.JCheckBox chkTodosP;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JComboBox<String> jboxTipUsuario;
     private javax.swing.JPanel jpBonones;
     private javax.swing.JPanel jpCRUD;
     public static javax.swing.JPanel jpLista;
     private javax.swing.JRadioButton jrApellP;
     private javax.swing.JRadioButton jrNombreP;
     private javax.swing.JTable tblPersona;
-    public static javax.swing.JTextField txtApellido;
+    public static javax.swing.JTextField txtApellidoVTI;
+    public static javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtDatosP;
-    public static javax.swing.JTextField txtDirecc1;
-    public static javax.swing.JTextField txtDoc;
-    public static javax.swing.JTextField txtNombre;
-    public static javax.swing.JTextField txtPassCli;
-    public static javax.swing.JTextField txtUsuarCli;
+    public static javax.swing.JTextField txtDireccVTI;
+    public static javax.swing.JTextField txtDocVTI;
+    public static javax.swing.JTextField txtNombreVTI;
     // End of variables declaration//GEN-END:variables
 }

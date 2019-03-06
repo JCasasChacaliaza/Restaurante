@@ -8,27 +8,36 @@ import java.util.logging.Logger;
 import modelo.Venta;
 import vista.panel.ClienteV;
 
-public class VentaC implements Serializable{
-    
+public class VentaC implements Serializable {
+
     Venta venta;
-    List<Venta>lsVenta;
+    List<Venta> lsVenta;
     VentaImpl dao;
-    
-    public VentaC(){
-        venta = new Venta();    
+
+    public VentaC() {
+        venta = new Venta();
         dao = new VentaImpl();
     }
-    
-    public void insertarVenta(){
+
+    public void insertarVenta() {
         try {
             dao.insert(venta);
         } catch (Exception ex) {
             System.out.println("Error en registar Venta " + ex.getMessage());
-        }        
+        }
     }
-    
-    public void variable(){
-        try {     
+
+    public void codigo() {
+        try {
+            dao.obtener(venta);
+        } catch (Exception e) {
+        System.out.println("Error al obenete "+ e.getMessage());
+        
+        }    
+    }
+
+    public void variable() {
+        try {
             venta.setCodVent(Integer.valueOf(ClienteV.txtNDocCliV.getText()));
             venta.setFechVent(ClienteV.txtFechCLV.getText());
             venta.setTotVent(ClienteV.txtTotal.getText());
@@ -40,5 +49,5 @@ public class VentaC implements Serializable{
             throw e;
         }
     }
-    
+
 }

@@ -9,7 +9,9 @@ import java.util.Date;
 import java.util.HashMap;
 import dao.Conexion;
 import static dao.Conexion.conectar;
+import dao.impl.VentaImpl;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -17,14 +19,14 @@ import java.util.logging.Logger;
 import javax.naming.ldap.HasControls;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Venta;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-import static vista.panel.PersonaV.txtPassCli;
-import static vista.panel.PersonaV.txtUsuarCli;
 import static vista.panel.PlatosV.modeloTabla;
 import static vista.panel.PlatosV.tabla_Platos;
 import vista.tabla.PersonaVT;
+import vista.tabla.PersonaVTI;
 
 public class ClienteV extends javax.swing.JFrame {
 
@@ -39,14 +41,14 @@ public class ClienteV extends javax.swing.JFrame {
     public String dato;
     PlatoImpl dao;
     private int codigoPlato;
-    private int codiVen ; 
+    
 
     public ClienteV() throws Exception {
         initComponents();
         Date sistFecha = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MMM/yyyy");
         txtFechCLV.setText(formato.format(sistFecha));
-        txtNDocCliV.setText(""+(codiVen+11));
+        
         cargar_Tabla();
         grupo_Platos.add(jrbNombrePlato);
         grupo_Platos.add(jrbDescrPlato);
@@ -58,6 +60,7 @@ public class ClienteV extends javax.swing.JFrame {
         total = 0;
         sub_total = 0.0;
         igv = 0;
+        
 
     }
 
@@ -105,8 +108,8 @@ public class ClienteV extends javax.swing.JFrame {
         txtCodMesa = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jpBotones = new javax.swing.JPanel();
-        jbAgregarCliV = new javax.swing.JButton();
-        jbCancelarCliV = new javax.swing.JButton();
+        btnAgregarCliente = new javax.swing.JButton();
+        btnNuevoPedido = new javax.swing.JButton();
         btnVenta = new javax.swing.JButton();
         btnPedidoC = new javax.swing.JButton();
         jpTabla = new javax.swing.JPanel();
@@ -333,32 +336,34 @@ public class ClienteV extends javax.swing.JFrame {
         jpBotones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(153, 255, 0), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 0), new java.awt.Color(51, 51, 0)));
         jpBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jbAgregarCliV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mas.png"))); // NOI18N
-        jbAgregarCliV.setText("Cliente");
-        jbAgregarCliV.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mas.png"))); // NOI18N
+        btnAgregarCliente.setText("Cliente");
+        btnAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAgregarCliVActionPerformed(evt);
+                btnAgregarClienteActionPerformed(evt);
             }
         });
-        jpBotones.add(jbAgregarCliV, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, 50));
+        jpBotones.add(btnAgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, 50));
 
-        jbCancelarCliV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        jbCancelarCliV.setText("Cancelar");
-        jbCancelarCliV.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevoPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
+        btnNuevoPedido.setText("Cancelar");
+        btnNuevoPedido.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNuevoPedido.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnNuevoPedido.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevoPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarCliVActionPerformed(evt);
+                btnNuevoPedidoActionPerformed(evt);
             }
         });
-        jpBotones.add(jbCancelarCliV, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 110, 50));
+        jpBotones.add(btnNuevoPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 90, 80));
 
-        btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
-        btnVenta.setText("Grabar Venta");
+        btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora.png"))); // NOI18N
         btnVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentaActionPerformed(evt);
             }
         });
-        jpBotones.add(btnVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 140, 60));
+        jpBotones.add(btnVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 110, 50));
 
         btnPedidoC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cubiertos.png"))); // NOI18N
         btnPedidoC.setText("Pedido");
@@ -369,7 +374,7 @@ public class ClienteV extends javax.swing.JFrame {
         });
         jpBotones.add(btnPedidoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 110, 50));
 
-        jPanel1.add(jpBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 140, 490));
+        jPanel1.add(jpBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 140, 530));
 
         jpTabla.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jpTabla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -403,7 +408,7 @@ public class ClienteV extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(197, 197, 197)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,7 +417,7 @@ public class ClienteV extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jpTabla.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 40));
+        jpTabla.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 40));
 
         txtSubTotal.setBackground(new java.awt.Color(204, 255, 255));
         txtSubTotal.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
@@ -470,19 +475,17 @@ public class ClienteV extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbAgregarCliVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarCliVActionPerformed
-        PersonaV personaV = null;
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+        PersonaVTI personaVTI = null;
         try {
-            personaV = new PersonaV();
+            personaVTI = new PersonaVTI();
         } catch (Exception ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
-        personaV.setVisible(true);
-        personaV.setDefaultCloseOperation(personaV.HIDE_ON_CLOSE);
-        txtUsuarCli.setVisible(false);
-        txtPassCli.setVisible(false);
+        personaVTI.setVisible(true);
+        personaVTI.setDefaultCloseOperation(personaVTI.HIDE_ON_CLOSE);     
 
-    }//GEN-LAST:event_jbAgregarCliVActionPerformed
+    }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void btnBuscarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCliActionPerformed
         PersonaVT persona = null;
@@ -495,9 +498,15 @@ public class ClienteV extends javax.swing.JFrame {
         persona.setDefaultCloseOperation(persona.HIDE_ON_CLOSE);
     }//GEN-LAST:event_btnBuscarCliActionPerformed
 
-    private void jbCancelarCliVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarCliVActionPerformed
+    private void btnNuevoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPedidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbCancelarCliVActionPerformed
+        try {
+            VentaC ventaC = new VentaC();
+            ventaC.codigo();
+        } catch (Exception e) {
+                 System.out.println("error "+e.getMessage());
+        }
+    }//GEN-LAST:event_btnNuevoPedidoActionPerformed
 
     private void btnPedidoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoCActionPerformed
         try {
@@ -609,7 +618,7 @@ public class ClienteV extends javax.swing.JFrame {
             dato = txtDatosPlatos.getText();
             cargar_Tabla();
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println("error aqui"+e.getMessage());
         }
     }//GEN-LAST:event_txtDatosPlatosCaretUpdate
 
@@ -654,7 +663,7 @@ public class ClienteV extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-            throw e;
+            System.out.println("error al pasar datos"+e.getMessage());
 
         }
 
@@ -692,7 +701,7 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodMesaActionPerformed
 
     private void txtNDocCliVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNDocCliVActionPerformed
-            
+             
     }//GEN-LAST:event_txtNDocCliVActionPerformed
 
     /**
@@ -735,8 +744,10 @@ public class ClienteV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton btnAgregarCliente;
     private javax.swing.JButton btnAgregarP;
     private javax.swing.JButton btnBuscarCli;
+    public static javax.swing.JButton btnNuevoPedido;
     private javax.swing.JButton btnPedidoC;
     public static javax.swing.JButton btnVenta;
     private javax.swing.ButtonGroup grupo_Platos;
@@ -758,8 +769,6 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JButton jbAgregarCliV;
-    public static javax.swing.JButton jbCancelarCliV;
     private javax.swing.JCheckBox jchkTodoPlato;
     private javax.swing.JDialog jdPedido;
     private javax.swing.JPanel jpBotones;

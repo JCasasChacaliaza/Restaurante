@@ -61,12 +61,6 @@ public class PersonaVT extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPersona = new javax.swing.JTable();
         jrDocumento = new javax.swing.JRadioButton();
-        jpBonones = new javax.swing.JPanel();
-        btnNuevo = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
-        btnEliminar1 = new javax.swing.JButton();
-        btnPedido = new javax.swing.JButton();
-        btnModificarRegis = new javax.swing.JButton();
         jpCRUD = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -81,6 +75,12 @@ public class PersonaVT extends javax.swing.JFrame {
         txtDirecc1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtUsuarCli = new javax.swing.JTextField();
+        jpBonones = new javax.swing.JPanel();
+        btnNuevo = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnEliminar1 = new javax.swing.JButton();
+        btnPedido = new javax.swing.JButton();
+        btnModificarRegis = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -156,62 +156,7 @@ public class PersonaVT extends javax.swing.JFrame {
         });
         jpLista.add(jrDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, 30));
 
-        jPanel1.add(jpLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 290));
-
-        jpBonones.setBackground(new java.awt.Color(153, 102, 0));
-        jpBonones.setForeground(new java.awt.Color(204, 102, 0));
-        jpBonones.setEnabled(false);
-        jpBonones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
-        btnNuevo.setText("Nuevo");
-        btnNuevo.setPreferredSize(new java.awt.Dimension(64, 64));
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 48));
-
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sobre.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.setPreferredSize(new java.awt.Dimension(64, 64));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 120, 48));
-        btnGuardar.getAccessibleContext().setAccessibleDescription("");
-
-        btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante.png"))); // NOI18N
-        btnEliminar1.setText("Eliminar");
-        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar1ActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, -1));
-
-        btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cubiertos.png"))); // NOI18N
-        btnPedido.setText("Pedido");
-        btnPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPedidoActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 120, 48));
-
-        btnModificarRegis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reanudar.png"))); // NOI18N
-        btnModificarRegis.setText("Modificar");
-        btnModificarRegis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarRegisActionPerformed(evt);
-            }
-        });
-        jpBonones.add(btnModificarRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 120, -1));
-
-        jPanel1.add(jpBonones, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, -1, 520));
+        jPanel1.add(jpLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 250));
 
         jpCRUD.setEnabled(false);
         jpCRUD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -277,6 +222,61 @@ public class PersonaVT extends javax.swing.JFrame {
         jpCRUD.add(txtUsuarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 180, 30));
 
         jPanel1.add(jpCRUD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 230));
+
+        jpBonones.setBackground(new java.awt.Color(153, 102, 0));
+        jpBonones.setForeground(new java.awt.Color(204, 102, 0));
+        jpBonones.setEnabled(false);
+        jpBonones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        btnNuevo.setText("Nuevo");
+        btnNuevo.setPreferredSize(new java.awt.Dimension(64, 64));
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 48));
+
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sobre.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.setPreferredSize(new java.awt.Dimension(64, 64));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 120, 48));
+        btnGuardar.getAccessibleContext().setAccessibleDescription("");
+
+        btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/restaurante.png"))); // NOI18N
+        btnEliminar1.setText("Eliminar");
+        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar1ActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, -1));
+
+        btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cubiertos.png"))); // NOI18N
+        btnPedido.setText("Pedido");
+        btnPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPedidoActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 120, 48));
+
+        btnModificarRegis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reanudar.png"))); // NOI18N
+        btnModificarRegis.setText("Modificar");
+        btnModificarRegis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarRegisActionPerformed(evt);
+            }
+        });
+        jpBonones.add(btnModificarRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 120, -1));
+
+        jPanel1.add(jpBonones, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, -1, 240));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 290));
 
