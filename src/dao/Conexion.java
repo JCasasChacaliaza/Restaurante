@@ -5,16 +5,34 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Conexion {
+    private static String usuario = "usuarioSQL" ;
+    private static String pass = "anthony_16";
+    private static String bd = "restaurante";
+    private static String url = "jdbc:sqlserver://MARPI:1433"+bd;
+    private static String local = "MARPI";
 
+    public static String getLocal() {
+        return local;
+    }
+
+    public static String getUsuario() {
+        return usuario;
+    }
+
+    public static String getPass() {
+        return pass;
+    }
+
+    public static String getBd() {
+        return bd;
+    }
+
+    public static String getUrl() {
+        return url;
+    }
     public static Connection cnx = null;
 
-    public static Connection getCnx() {
-        return cnx;
-    }
 
-    public static void setCnx(Connection cnx) {
-        Conexion.cnx = cnx;
-    }
 
     public static Connection conectar() throws Exception {
 
@@ -34,7 +52,7 @@ public class Conexion {
         }
         return cnx;
     }
-
+    
     
     public static void cerrarCnx() throws SQLException {
         if (cnx != null) {
@@ -49,5 +67,12 @@ public class Conexion {
         } else {
             System.out.println("cerrado");
         }
+    }
+        public static Connection getCnx() {
+        return cnx;
+    }
+
+    public static void setCnx(Connection cnx) {
+        Conexion.cnx = cnx;
     }
 }

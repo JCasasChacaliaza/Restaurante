@@ -3,6 +3,7 @@ package vista.control;
 import java.awt.BorderLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import vista.backup.Visual;
 import vista.panel.HorarioV;
 import vista.panel.MesaV;
 import vista.panel.PersonaV;
@@ -31,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         jpBotones = new javax.swing.JPanel();
         btnVenta = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jpOpciones = new javax.swing.JPanel();
         btnPersona = new javax.swing.JButton();
         btnPlato = new javax.swing.JButton();
@@ -89,7 +91,15 @@ public class Principal extends javax.swing.JFrame {
         });
         jpBotones.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 81, 70));
 
-        jPanel1.add(jpBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 90, 500));
+        jButton2.setText("Backup");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jpBotones.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, 70));
+
+        jPanel1.add(jpBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 90, 600));
 
         jpOpciones.setBackground(new java.awt.Color(153, 153, 255));
         jpOpciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -290,6 +300,10 @@ public class Principal extends javax.swing.JFrame {
        jpOpciones.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new Visual().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -333,6 +347,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnUbigeo;
     private javax.swing.JButton btnVenta;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

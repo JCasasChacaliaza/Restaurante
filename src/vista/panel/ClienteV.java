@@ -10,6 +10,7 @@ import java.util.HashMap;
 import dao.Conexion;
 import static dao.Conexion.conectar;
 import dao.impl.VentaImpl;
+import java.awt.Toolkit;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -41,14 +42,13 @@ public class ClienteV extends javax.swing.JFrame {
     public String dato;
     PlatoImpl dao;
     private int codigoPlato;
-    
 
     public ClienteV() throws Exception {
         initComponents();
         Date sistFecha = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MMM/yyyy");
         txtFechCLV.setText(formato.format(sistFecha));
-        
+        //txtRucCliV1.setEditable(false);
         cargar_Tabla();
         grupo_Platos.add(jrbNombrePlato);
         grupo_Platos.add(jrbDescrPlato);
@@ -60,12 +60,11 @@ public class ClienteV extends javax.swing.JFrame {
         total = 0;
         sub_total = 0.0;
         igv = 0;
-        
 
     }
 
     private void cargar_tabla2() throws Exception {
-        String columna[] = new String[]{"Codigo","Cantidad", "Nombre", "Precio Unitario", "Importe"};
+        String columna[] = new String[]{"Codigo", "Cantidad", "Nombre", "Precio Unitario", "Importe"};
         modeloTabla2 = new DefaultTableModel(null, columna);
         tabla_venta.setModel(modeloTabla2);
     }
@@ -266,6 +265,11 @@ public class ClienteV extends javax.swing.JFrame {
         jpCliente.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 60, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Comprobante", "BOLETA", "FACTURA" }));
+        jComboBox1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jComboBox1KeyTyped(evt);
+            }
+        });
         jpCliente.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 170, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -483,7 +487,7 @@ public class ClienteV extends javax.swing.JFrame {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
         personaVTI.setVisible(true);
-        personaVTI.setDefaultCloseOperation(personaVTI.HIDE_ON_CLOSE);     
+        personaVTI.setDefaultCloseOperation(personaVTI.HIDE_ON_CLOSE);
 
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
@@ -504,7 +508,7 @@ public class ClienteV extends javax.swing.JFrame {
             VentaC ventaC = new VentaC();
             ventaC.codigo();
         } catch (Exception e) {
-                 System.out.println("error "+e.getMessage());
+            System.out.println("error " + e.getMessage());
         }
     }//GEN-LAST:event_btnNuevoPedidoActionPerformed
 
@@ -522,7 +526,7 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPedidoCActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-            
+
         try {
             VentaC ventaC = new VentaC();
             ventaC.variable();
@@ -534,34 +538,37 @@ public class ClienteV extends javax.swing.JFrame {
         if (jComboBox1.getSelectedItem().equals("FACTURA")) {
             try {
                 cn.conectar();
-                
+
                 String ruta = "src\\reporte\\RPersona.jasper";
                 Map parametro = new HashMap();
-                parametro.put("codven", Integer.valueOf( txtNDocCliV.getText()));
+                parametro.put("codven", Integer.valueOf(txtNDocCliV.getText()));
                 JasperPrint informe = JasperFillManager.fillReport(ruta, parametro, cn.conectar());
                 JasperViewer ventana = new JasperViewer(informe, false);
                 ventana.setTitle("Factura");
-                ventana.setVisible(true);
-            } catch (Exception e) {
-                System.out.println("Error en el Reporte " + e.getMessage());
-            }
-        }else{
-            if (jComboBox1.getSelectedItem().equals("BOLETE")) {
-            try {
-                cn.conectar();                
-                String ruta = "src\\reporte\\RPersona.jasper";
-                Map parametro = new HashMap();
-                parametro.put("codven",Integer.valueOf(txtNDocCliV.getText()));
-                JasperPrint informe = JasperFillManager.fillReport(ruta, parametro, cn.conectar());
-                JasperViewer ventana = new JasperViewer(informe, false);
-                ventana.setVisible(true);
-                ventana.setTitle("BOLETA");
                 
+                ventana.setVisible(true);
             } catch (Exception e) {
                 System.out.println("Error en el Reporte " + e.getMessage());
             }
-            
-        }
+           
+        } else {
+            if (jComboBox1.getSelectedItem().equals("BOLETE")) {
+                try {
+                    cn.conectar();
+                    String ruta = "src\\reporte\\RPersona.jasper";
+                    Map parametro = new HashMap();
+                    parametro.put("codven", Integer.valueOf(txtNDocCliV.getText()));
+                    JasperPrint informe = JasperFillManager.fillReport(ruta, parametro, cn.conectar());
+                    JasperViewer ventana = new JasperViewer(informe, false);
+                    
+                    ventana.setVisible(true);
+                    ventana.setTitle("BOLETA");
+
+                } catch (Exception e) {
+                    System.out.println("Error en el Reporte " + e.getMessage());
+                }
+                
+            }
 
         }
     }//GEN-LAST:event_btnVentaActionPerformed
@@ -618,7 +625,7 @@ public class ClienteV extends javax.swing.JFrame {
             dato = txtDatosPlatos.getText();
             cargar_Tabla();
         } catch (Exception e) {
-            System.out.println("error aqui"+e.getMessage());
+            System.out.println("error aqui" + e.getMessage());
         }
     }//GEN-LAST:event_txtDatosPlatosCaretUpdate
 
@@ -629,7 +636,7 @@ public class ClienteV extends javax.swing.JFrame {
     private void btnAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPActionPerformed
         int fila = tabla_Platos.getSelectedRow();
         try {
-            String  cant, preci, nombre, importe, codigo;
+            String cant, preci, nombre, importe, codigo;
             double calcula = 0.0, x = 0.0;
             int canti = 0, igvs = 0;
             if (fila == -1) {
@@ -647,7 +654,7 @@ public class ClienteV extends javax.swing.JFrame {
 
                 //enviar datos a la otra tabla
                 m = (DefaultTableModel) tabla_venta.getModel();
-                String fila2[] = {codigo ,cant, nombre, preci, importe};
+                String fila2[] = {codigo, cant, nombre, preci, importe};
                 m.addRow(fila2);
 
                 calcula = (Double.parseDouble(preci) * Integer.parseInt(txtCantidad.getText()));
@@ -663,7 +670,7 @@ public class ClienteV extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-            System.out.println("error al pasar datos"+e.getMessage());
+            System.out.println("error al pasar datos" + e.getMessage());
 
         }
 
@@ -683,11 +690,18 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechCLVActionPerformed
 
     private void txtRucCliV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucCliV1ActionPerformed
-        // TODO add your handling code here:
+                
     }//GEN-LAST:event_txtRucCliV1ActionPerformed
 
     private void txtRucCliV1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucCliV1KeyTyped
         //validar numero
+        //txtRucCliV1.setEnabled(true);
+        char c = evt.getKeyChar();
+        if(c < '0'|| c > '9' )evt.consume();
+        if(txtRucCliV1.getText().length()>=11){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();            
+        }
 
 
     }//GEN-LAST:event_txtRucCliV1KeyTyped
@@ -701,8 +715,19 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodMesaActionPerformed
 
     private void txtNDocCliVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNDocCliVActionPerformed
-             
+
     }//GEN-LAST:event_txtNDocCliVActionPerformed
+
+    private void jComboBox1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyTyped
+        if (jComboBox1.getSelectedItem().equals("FACTURA")) {
+            
+        } else {
+            if (jComboBox1.getSelectedItem().equals("BOLETA")) {
+                txtRucCliV1.setEnabled(false);
+            }
+
+        }
+    }//GEN-LAST:event_jComboBox1KeyTyped
 
     /**
      * @param args the command line arguments
